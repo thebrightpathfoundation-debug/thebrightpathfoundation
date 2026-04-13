@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About — BrightPath Foundation for Digital Learning</title>
+  <meta name="description" content="Learn about BrightPath Foundation — our story, mission, founding team, and registration details.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================
+       RESET & BASE
+    ============================================ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      color: #1A2224;
+      background: #fff;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+
+    /* ============================================
+       CSS VARIABLES
+    ============================================ */
+    :root {
+      --teal:         #0A6E6E;
+      --teal-light:   #0D8A8A;
+      --teal-dark:    #064F4F;
+      --teal-pale:    #E6F4F4;
+      --gold:         #C9A84C;
+      --gold-light:   #E2C97A;
+      --gold-pale:    #FBF5E6;
+      --charcoal:     #1E2528;
+      --charcoal-mid: #2E3B3E;
+      --cream:        #F9F5EF;
+      --white:        #FFFFFF;
+      --text-dark:    #1A2224;
+      --text-mid:     #3D4F53;
+      --text-soft:    #6B7E82;
+      --border:       rgba(10,110,110,0.12);
+      --shadow-sm:    0 2px 12px rgba(10,110,110,0.08);
+      --shadow-md:    0 8px 32px rgba(10,110,110,0.12);
+      --shadow-lg:    0 20px 60px rgba(10,110,110,0.16);
+      --transition:   0.3s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    /* ============================================
+       NAVBAR
+    ============================================ */
+    .navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 0 5%;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(30,37,40,0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(201,168,76,0.15);
+      transition: var(--transition);
+    }
+    .navbar.scrolled {
+      background: rgba(6,79,79,0.97);
+      height: 64px;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .nav-logo-icon {
+      width: 36px; height: 36px;
+      background: linear-gradient(135deg, var(--teal-light), var(--gold));
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 700; font-size: 18px;
+      color: white; letter-spacing: -0.5px;
+      flex-shrink: 0;
+    }
+    .nav-logo-text { display: flex; flex-direction: column; line-height: 1.1; }
+    .nav-logo-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 17px; font-weight: 600;
+      color: var(--white); letter-spacing: 0.3px;
+    }
+    .nav-logo-tagline {
+      font-family: 'Space Mono', monospace;
+      font-size: 9px; letter-spacing: 2px;
+      color: var(--gold-light); text-transform: uppercase;
+    }
+    .nav-links {
+      display: flex; align-items: center; gap: 32px; list-style: none;
+    }
+    .nav-links a {
+      font-size: 13.5px; font-weight: 500;
+      color: rgba(255,255,255,0.7);
+      letter-spacing: 0.5px;
+      transition: var(--transition);
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px; left: 0; right: 0;
+      height: 1px; background: var(--gold);
+      transform: scaleX(0); transition: var(--transition);
+      transform-origin: left;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--white); }
+    .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
+    .nav-cta {
+      background: var(--gold) !important;
+      color: var(--charcoal) !important;
+      padding: 8px 20px !important;
+      border-radius: 4px !important;
+      font-weight: 600 !important;
+    }
+    .nav-cta:hover { background: var(--gold-light) !important; transform: translateY(-1px); }
+    .nav-cta::after { display: none !important; }
+    .hamburger {
+      display: none; flex-direction: column;
+      gap: 5px; cursor: pointer; padding: 4px;
+    }
+    .hamburger span {
+      display: block; width: 24px; height: 2px;
+      background: var(--white); border-radius: 2px;
+      transition: var(--transition);
+    }
+
+    /* ============================================
+       SHARED COMPONENTS
+    ============================================ */
+    .section-tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: 'Space Mono', monospace;
+      font-size: 11px; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--teal);
+      margin-bottom: 16px;
+    }
+    .section-tag::before {
+      content: ''; display: block;
+      width: 24px; height: 1px; background: var(--gold);
+    }
+    .section-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 600; line-height: 1.15;
+      color: var(--charcoal); letter-spacing: -0.5px;
+    }
+    .section-heading em { font-style: italic; color: var(--teal); }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--teal); color: var(--white);
+      padding: 14px 28px; border-radius: 4px;
+      font-size: 14px; font-weight: 600; letter-spacing: 0.5px;
+      border: none; cursor: pointer; transition: var(--transition);
+    }
+    .btn-primary:hover {
+      background: var(--teal-dark);
+      transform: translateY(-2px); box-shadow: var(--shadow-md);
+    }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: transparent; color: var(--teal);
+      padding: 13px 27px; border-radius: 4px;
+      font-size: 14px; font-weight: 600; letter-spacing: 0.5px;
+      border: 1.5px solid var(--teal); cursor: pointer;
+      transition: var(--transition);
+    }
+    .btn-secondary:hover {
+      background: var(--teal); color: var(--white);
+      transform: translateY(-2px);
+    }
+
+    /* ============================================
+       PAGE HERO
+    ============================================ */
+    .page-hero {
+      background: var(--charcoal);
+      padding: 160px 5% 100px;
+      position: relative; overflow: hidden;
+    }
+    .page-hero::before {
+      content: ''; position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 50% 80% at 80% 50%, rgba(10,110,110,0.22) 0%, transparent 70%),
+        radial-gradient(ellipse 30% 50% at 15% 80%, rgba(201,168,76,0.1) 0%, transparent 60%);
+    }
+    .page-hero-inner {
+      position: relative; z-index: 1; max-width: 680px;
+    }
+    .page-hero .section-tag { color: var(--gold-light); }
+    .page-hero .section-tag::before { background: var(--gold); }
+    .page-hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 5vw, 4.5rem);
+      font-weight: 600; color: var(--white);
+      line-height: 1.1; letter-spacing: -1px;
+      margin: 16px 0 24px;
+    }
+    .page-hero h1 em { font-style: italic; color: var(--gold-light); }
+    .page-hero p {
+      font-size: 17px; color: rgba(255,255,255,0.65); line-height: 1.75;
+      max-width: 520px;
+    }
+
+    /* ============================================
+       REGISTRATION BANNER
+    ============================================ */
+    .reg-banner {
+      background: var(--teal);
+      padding: 22px 5%;
+      display: flex; align-items: center;
+      justify-content: center; gap: 40px; flex-wrap: wrap;
+    }
+    .reg-item {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 13px; color: rgba(255,255,255,0.85);
+    }
+    .reg-item strong {
+      color: var(--gold-light);
+      font-family: 'Space Mono', monospace;
+      font-size: 12px; letter-spacing: 1px;
+    }
+    .reg-divider { width: 1px; height: 24px; background: rgba(255,255,255,0.2); }
+
+    /* ============================================
+       MISSION & VISION
+    ============================================ */
+    .mv-section {
+      padding: 100px 5%;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 40px; max-width: 1200px; margin: 0 auto;
+    }
+    .mv-card {
+      padding: 52px; border-radius: 24px;
+      position: relative; overflow: hidden;
+    }
+    .mv-card.mission { background: var(--teal-dark); }
+    .mv-card.vision {
+      background: var(--gold-pale);
+      border: 1px solid rgba(201,168,76,0.2);
+    }
+    .mv-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px; letter-spacing: 3px;
+      text-transform: uppercase; margin-bottom: 20px;
+      display: block;
+    }
+    .mv-card.mission .mv-label { color: var(--gold-light); }
+    .mv-card.vision  .mv-label { color: var(--teal); }
+    .mv-card h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.5rem, 2.5vw, 1.9rem);
+      font-weight: 600; line-height: 1.3; margin-bottom: 16px;
+    }
+    .mv-card.mission h2 { color: var(--white); }
+    .mv-card.vision  h2 { color: var(--charcoal); }
+    .mv-card p { font-size: 15px; line-height: 1.8; }
+    .mv-card.mission p { color: rgba(255,255,255,0.72); }
+    .mv-card.vision  p { color: var(--text-mid); }
+    .mv-deco {
+      position: absolute; bottom: -20px; right: -10px;
+      font-size: 130px; opacity: 0.06; line-height: 1;
+      pointer-events: none;
+    }
+
+    /* ============================================
+       STORY SECTION
+    ============================================ */
+    .story-section {
+      padding: 0 5% 100px;
+      max-width: 1200px; margin: 0 auto;
+    }
+    .story-header { text-align: center; margin-bottom: 64px; }
+    .story-header .section-tag { justify-content: center; }
+    .story-header .sub {
+      font-size: 16px; color: var(--text-mid);
+      line-height: 1.75; max-width: 540px;
+      margin: 16px auto 0;
+    }
+    .story-body {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 64px; align-items: start;
+    }
+    .story-text p {
+      font-size: 15.5px; color: var(--text-mid);
+      line-height: 1.85; margin-bottom: 20px;
+    }
+    .story-text p strong { color: var(--charcoal); }
+    .challenge-list { list-style: none; display: flex; flex-direction: column; gap: 16px; }
+    .challenge-item {
+      display: flex; align-items: flex-start; gap: 16px;
+      padding: 22px; background: var(--cream);
+      border-radius: 12px; border: 1px solid var(--border);
+      transition: var(--transition);
+    }
+    .challenge-item:hover { border-color: var(--teal-light); box-shadow: var(--shadow-sm); }
+    .challenge-icon {
+      width: 44px; height: 44px; background: var(--teal-pale);
+      border-radius: 10px; display: flex; align-items: center;
+      justify-content: center; font-size: 20px; flex-shrink: 0;
+    }
+    .challenge-item h4 { font-size: 14px; font-weight: 600; color: var(--charcoal); margin-bottom: 4px; }
+    .challenge-item p  { font-size: 13px; color: var(--text-soft); line-height: 1.55; }
+
+    /* ============================================
+       TEAM SECTION
+    ============================================ */
+    .team-section { background: var(--cream); padding: 100px 5%; }
+    .team-inner { max-width: 1200px; margin: 0 auto; }
+    .team-header { text-align: center; margin-bottom: 64px; }
+    .team-header .section-tag { justify-content: center; }
+    .team-header .sub {
+      font-size: 16px; color: var(--text-mid);
+      line-height: 1.75; max-width: 520px; margin: 16px auto 0;
+    }
+    .team-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 32px; max-width: 860px; margin: 0 auto;
+    }
+    .team-card {
+      background: var(--white); border-radius: 24px;
+      overflow: hidden; border: 1px solid var(--border);
+      transition: var(--transition);
+    }
+    .team-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+    .team-img {
+      height: 260px;
+      background: linear-gradient(135deg, var(--teal-pale) 0%, var(--teal-light) 100%);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 8px; position: relative;
+    }
+    .team-img .avatar { font-size: 72px; opacity: 0.35; }
+    .team-img .img-note {
+      font-size: 12px; color: rgba(255,255,255,0.5);
+      font-style: italic;
+    }
+    .team-role-badge {
+      position: absolute; bottom: 16px; left: 16px;
+      background: var(--gold); color: var(--charcoal);
+      padding: 5px 14px; border-radius: 100px;
+      font-size: 10px; font-weight: 700;
+      letter-spacing: 1.5px; text-transform: uppercase;
+    }
+    .team-info { padding: 32px; }
+    .team-info h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem; font-weight: 600;
+      color: var(--charcoal); margin-bottom: 4px;
+    }
+    .team-info .title {
+      font-size: 12px; color: var(--teal); font-weight: 600;
+      letter-spacing: 1px; text-transform: uppercase; margin-bottom: 14px;
+    }
+    .team-info p { font-size: 13.5px; color: var(--text-mid); line-height: 1.7; }
+
+    /* ============================================
+       OBJECTIVES
+    ============================================ */
+    .objectives-section {
+      padding: 100px 5%; max-width: 1200px; margin: 0 auto;
+    }
+    .objectives-header { margin-bottom: 56px; }
+    .objectives-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+    }
+    .obj-item {
+      display: flex; gap: 20px; padding: 28px;
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 12px; transition: var(--transition);
+    }
+    .obj-item:hover { border-color: var(--teal-light); box-shadow: var(--shadow-sm); }
+    .obj-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.8rem; font-weight: 700;
+      color: var(--teal-pale); line-height: 1;
+      flex-shrink: 0; width: 52px;
+    }
+    .obj-text h4 { font-size: 14.5px; font-weight: 600; color: var(--charcoal); margin-bottom: 6px; }
+    .obj-text p  { font-size: 13px; color: var(--text-soft); line-height: 1.65; }
+
+    /* ============================================
+       SUSTAINABILITY
+    ============================================ */
+    .sustain-section { background: var(--teal-dark); padding: 100px 5%; }
+    .sustain-inner { max-width: 1200px; margin: 0 auto; }
+    .sustain-inner .section-tag { color: var(--gold-light); }
+    .sustain-inner .section-tag::before { background: var(--gold); }
+    .sustain-inner .section-heading { color: var(--white); margin-bottom: 56px; }
+    .sustain-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+    .sustain-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px; padding: 40px;
+      transition: var(--transition);
+    }
+    .sustain-card:hover {
+      background: rgba(255,255,255,0.09);
+      transform: translateY(-4px);
+    }
+    .sustain-card .s-icon { font-size: 40px; margin-bottom: 20px; }
+    .sustain-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem; font-weight: 600;
+      color: var(--gold-light); margin-bottom: 12px;
+    }
+    .sustain-card p { font-size: 13.5px; color: rgba(255,255,255,0.6); line-height: 1.75; }
+
+    /* ============================================
+       CTA STRIP
+    ============================================ */
+    .cta-strip {
+      background: var(--charcoal); padding: 100px 5%;
+      text-align: center; position: relative; overflow: hidden;
+    }
+    .cta-strip::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(10,110,110,0.2) 0%, transparent 70%);
+    }
+    .cta-inner { position: relative; z-index: 1; max-width: 580px; margin: 0 auto; }
+    .cta-strip .section-tag { color: var(--gold-light); justify-content: center; }
+    .cta-strip .section-tag::before { background: var(--gold); }
+    .cta-strip .section-heading { color: var(--white); margin-bottom: 20px; }
+    .cta-strip p { font-size: 16px; color: rgba(255,255,255,0.6); line-height: 1.75; margin-bottom: 40px; }
+    .cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .btn-gold {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--gold); color: var(--charcoal);
+      padding: 15px 30px; border-radius: 4px;
+      font-size: 14px; font-weight: 700; letter-spacing: 0.5px;
+      border: none; cursor: pointer; transition: var(--transition);
+    }
+    .btn-gold:hover {
+      background: var(--gold-light); transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(201,168,76,0.35);
+    }
+    .btn-outline-white {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: transparent; color: rgba(255,255,255,0.75);
+      padding: 14px 28px; border-radius: 4px;
+      font-size: 14px; font-weight: 500;
+      border: 1.5px solid rgba(255,255,255,0.2);
+      cursor: pointer; transition: var(--transition);
+    }
+    .btn-outline-white:hover {
+      border-color: rgba(255,255,255,0.5); color: var(--white); transform: translateY(-2px);
+    }
+
+    /* ============================================
+       FOOTER
+    ============================================ */
+    .footer { background: var(--charcoal); color: rgba(255,255,255,0.7); padding: 64px 5% 32px; }
+    .footer-grid {
+      display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 48px; padding-bottom: 48px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      margin-bottom: 32px;
+    }
+    .footer-brand .nav-logo { margin-bottom: 16px; }
+    .footer-brand p { font-size: 13.5px; line-height: 1.7; margin-bottom: 20px; color: rgba(255,255,255,0.5); }
+    .footer-social { display: flex; gap: 10px; }
+    .social-btn {
+      width: 36px; height: 36px; border-radius: 6px;
+      background: rgba(255,255,255,0.06);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; color: rgba(255,255,255,0.55);
+      transition: var(--transition); border: 1px solid rgba(255,255,255,0.08);
+      font-style: normal;
+    }
+    .social-btn:hover { background: var(--teal); color: var(--white); border-color: var(--teal); }
+    .footer-col h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 16px; font-weight: 600; color: var(--white);
+      margin-bottom: 20px;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col ul li a { font-size: 13.5px; color: rgba(255,255,255,0.5); transition: var(--transition); }
+    .footer-col ul li a:hover { color: var(--gold-light); }
+    .footer-contact-item {
+      display: flex; align-items: flex-start; gap: 10px;
+      margin-bottom: 12px; font-size: 13px; color: rgba(255,255,255,0.5);
+    }
+    .footer-contact-item .fi { color: var(--gold); font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+    .footer-bottom {
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 12.5px; color: rgba(255,255,255,0.3); flex-wrap: wrap; gap: 12px;
+    }
+    .footer-reg { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 1.5px; color: rgba(255,255,255,0.22); }
+
+    /* ============================================
+       MOBILE RESPONSIVE
+    ============================================ */
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .nav-links.open {
+        display: flex; flex-direction: column;
+        position: fixed; top: 72px; left: 0; right: 0; bottom: 0;
+        background: var(--charcoal); padding: 40px 5%;
+        gap: 24px; align-items: flex-start; z-index: 999;
+      }
+      .nav-links.open a { font-size: 20px; }
+      .nav-cta { display: none !important; }
+      .mv-section { grid-template-columns: 1fr; }
+      .story-body { grid-template-columns: 1fr; gap: 40px; }
+      .team-grid { grid-template-columns: 1fr; max-width: 420px; }
+      .objectives-grid { grid-template-columns: 1fr; }
+      .sustain-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+    }
+    @media (max-width: 480px) {
+      .reg-banner { gap: 20px; }
+      .reg-divider { display: none; }
+      .footer-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ============================================================
+     NAVBAR
+============================================================ -->
+<nav class="navbar" id="navbar">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-icon">B</div>
+    <div class="nav-logo-text">
+      <span class="nav-logo-name">BrightPath Foundation</span>
+      <span class="nav-logo-tagline">Educate · Empower · Evolve</span>
+    </div>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html" class="active">About</a></li>
+    <li><a href="programs.html">Programs</a></li>
+    <li><a href="impact.html">Impact</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="donate.html" class="nav-cta">Donate</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ============================================================
+     PAGE HERO
+============================================================ -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <div class="section-tag">About Us</div>
+    <h1>The <em>Story</em> Behind<br>BrightPath</h1>
+    <p>A registered Nigerian NGO built on a simple belief: every young person — regardless of where they come from — deserves access to the technology skills that will define the 21st century.</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     REGISTRATION BANNER
+============================================================ -->
+<div class="reg-banner">
+  <div class="reg-item">
+    <span>📋</span>
+    <span>Registration: <strong>CAC No. 8453337</strong></span>
+  </div>
+  <div class="reg-divider"></div>
+  <div class="reg-item">
+    <span>🏛️</span>
+    <span>Tax ID: <strong>33143265-0001</strong></span>
+  </div>
+  <div class="reg-divider"></div>
+  <div class="reg-item">
+    <span>📅</span>
+    <span>Registered: <strong>5 May 2025</strong></span>
+  </div>
+  <div class="reg-divider"></div>
+  <div class="reg-item">
+    <span>🇳🇬</span>
+    <span>Status: <strong>ACTIVE ✓</strong></span>
+  </div>
+</div>
+
+<!-- ============================================================
+     MISSION & VISION
+============================================================ -->
+<div class="mv-section">
+  <div class="mv-card mission">
+    <span class="mv-label">Our Mission</span>
+    <h2>Equipping Youth.<br>Building Futures.</h2>
+    <p>To equip underserved Nigerian youth with the digital and STEM skills they need to build sustainable livelihoods, drive community innovation, and participate confidently in the global economy.</p>
+    <div class="mv-deco">🎯</div>
+  </div>
+  <div class="mv-card vision">
+    <span class="mv-label">Our Vision</span>
+    <h2>A Nigeria Where Every Young Person Can Lead</h2>
+    <p>A Nigeria where every young person — regardless of location, gender, or economic background — has access to quality technology education and the opportunity to lead in the digital age.</p>
+    <div class="mv-deco">🌟</div>
+  </div>
+</div>
+
+<!-- ============================================================
+     STORY SECTION
+============================================================ -->
+<section class="story-section">
+  <div class="story-header">
+    <div class="section-tag">Background & Context</div>
+    <h2 class="section-heading">The Problem We're <em>Solving</em></h2>
+    <p class="sub">Nigeria has extraordinary youthful energy — but a digital divide that threatens to leave millions behind.</p>
+  </div>
+  <div class="story-body">
+    <div class="story-text">
+      <p>Nigeria is Africa's largest economy and home to over <strong>220 million people — 70% of whom are under the age of 30.</strong> This extraordinary youthful population holds immense potential, but faces a profound digital divide.</p>
+      <p>Without access to digital skills and technology education, an entire generation risks being left behind as the world moves online. BrightPath Foundation was founded to change that — providing practical, accessible, and impactful technology education to the communities that need it most.</p>
+      <p>We serve <strong>rural communities</strong> with no internet infrastructure, <strong>low-income urban neighbourhoods</strong>, conflict-affected communities, and women and girls facing systemic barriers to education. Our model is designed to scale — from Lagos to every one of Nigeria's 36 states.</p>
+    </div>
+    <ul class="challenge-list">
+      <li class="challenge-item">
+        <div class="challenge-icon">📡</div>
+        <div>
+          <h4>Digital Exclusion</h4>
+          <p>67% of Nigerians lack internet access, cutting them off from education and economic opportunity.</p>
+        </div>
+      </li>
+      <li class="challenge-item">
+        <div class="challenge-icon">📉</div>
+        <div>
+          <h4>Youth Unemployment</h4>
+          <p>Over 53% of young Nigerians have no formal employment and lack marketable digital skills.</p>
+        </div>
+      </li>
+      <li class="challenge-item">
+        <div class="challenge-icon">🏫</div>
+        <div>
+          <h4>Education Deficit</h4>
+          <p>Across rural and low-income communities, quality STEM and tech education is virtually nonexistent.</p>
+        </div>
+      </li>
+      <li class="challenge-item">
+        <div class="challenge-icon">⚡</div>
+        <div>
+          <h4>Gender Barriers</h4>
+          <p>Women and girls face systemic barriers to education and economic participation.</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============================================================
+     TEAM
+============================================================ -->
+<section class="team-section">
+  <div class="team-inner">
+    <div class="team-header">
+      <div class="section-tag">Our Founding Trustees</div>
+      <h2 class="section-heading">The People <em>Behind</em> the Mission</h2>
+      <p class="sub">BrightPath Foundation is led by two committed Nigerian women who believe technology is the greatest equaliser of our time.</p>
+    </div>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-img">
+          <div class="avatar">👤</div>
+          <div class="img-note">Add headshot photo here</div>
+          <div class="team-role-badge">Chairman &amp; Trustee</div>
+        </div>
+        <div class="team-info">
+          <h3>Moyosore Ejiroghene Jacob</h3>
+          <div class="title">Co-Founder &amp; Chairperson</div>
+          <p>Moyosore serves as Chairman of BrightPath Foundation, providing strategic direction and leadership in driving the foundation's mission to close Nigeria's digital skills gap.</p>
+        </div>
+      </div>
+      <div class="team-card">
+        <div class="team-img">
+          <div class="avatar">👤</div>
+          <div class="img-note">Add headshot photo here</div>
+          <div class="team-role-badge">Trustee &amp; Secretary</div>
+        </div>
+        <div class="team-info">
+          <h3>Faith Eleke Ida</h3>
+          <div class="title">Co-Founder &amp; Secretary</div>
+          <p>Faith serves as Trustee and Secretary of BrightPath Foundation, overseeing governance, partnerships, and operational delivery of the foundation's programs across Nigeria.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     OBJECTIVES
+============================================================ -->
+<section class="objectives-section">
+  <div class="objectives-header">
+    <div class="section-tag">Our Objectives</div>
+    <h2 class="section-heading">Eight <em>Commitments</em> to Nigeria's Youth</h2>
+  </div>
+  <div class="objectives-grid">
+    <div class="obj-item">
+      <div class="obj-num">01</div>
+      <div class="obj-text">
+        <h4>Accessible Technology Education</h4>
+        <p>Courses in coding, software development, and digital literacy with immediate market value.</p>
+      </div>
+    </div>
+    <div class="obj-item">
+      <div class="obj-num">02</div>
+      <div class="obj-text">
+        <h4>Mentorship Programmes</h4>
+        <p>Connecting youth with tech professionals locally, nationally, and across the Nigerian diaspora.</p>
+      </div>
+    </div>
+    <div class="obj-item">
+      <div class="obj-num">03</div>
+      <div class="obj-text">
+        <h4>Community Tech Solutions</h4>
+        <p>Empowering graduates to build health tech, agricultural tools, and e-learning applications.</p>
+      </div>
+    </div>
+    <div class="obj-item">
+      <div class="obj-num">04</div>
+      <div class="obj-text">
+        <h4>Scholarships &amp; Bursaries</h4>
+        <p>Removing financial barriers to STEM education for deserving students across Nigeria.</p>
+      </div>
+    </div>
+    <div class="obj-item">
+      <div class="obj-num">05</div>
+      <div class="obj-text">
+        <h4>Entrepreneurship Hubs</h4>
+        <p>Enabling youth to access the gig economy or launch their own technology ventures.</p>
+      </div>
+    </div>
+    <div class="obj-item">
+      <div class="obj-num">06</div>
+      <div class="obj-text">
+        <h4>Gender Inclusion</h4>
+        <p>Championing equal access with specific focus on women, girls, and excluded communities.</p>
+      </div>
+    </div>
+    <div class="obj-item">
+      <div class="obj-num">07</div>
+      <div class="obj-text">
+        <h4>Environmental Technology</h4>
+        <p>Engaging youth in applying technology to environmental and social challenges.</p>
+      </div>
+    </div>
+    <div class="obj-item">
+      <div class="obj-num">08</div>
+      <div class="obj-text">
+        <h4>Technology for Peacebuilding</h4>
+        <p>Creating platforms for dialogue, collaboration, and community development.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SUSTAINABILITY
+============================================================ -->
+<section class="sustain-section">
+  <div class="sustain-inner">
+    <div class="section-tag">Sustainability</div>
+    <h2 class="section-heading">Built to <em>Last</em></h2>
+    <div class="sustain-grid">
+      <div class="sustain-card">
+        <div class="s-icon">🔄</div>
+        <h3>Income Generation</h3>
+        <p>Graduates return as paid trainers and mentors — creating a self-reinforcing cycle of knowledge transfer and programme continuity.</p>
+      </div>
+      <div class="sustain-card">
+        <div class="s-icon">🏢</div>
+        <h3>Social Enterprises</h3>
+        <p>Revenue-generating community tech hubs where participants earn income that is reinvested directly into foundation activities.</p>
+      </div>
+      <div class="sustain-card">
+        <div class="s-icon">🌐</div>
+        <h3>Diversified Funding</h3>
+        <p>International grants, local corporate sponsorships, government partnerships, and earned income — a resilient, multi-source funding model.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CTA
+============================================================ -->
+<section class="cta-strip">
+  <div class="cta-inner">
+    <div class="section-tag">Join the Mission</div>
+    <h2 class="section-heading">Be Part of <em>Nigeria's</em> Digital Revolution</h2>
+    <p>Your support provides computers, scholarships, and training for underserved Nigerian youth. Every contribution transforms a life.</p>
+    <div class="cta-btns">
+      <a href="donate.html" class="btn-gold">Donate Now →</a>
+      <a href="contact.html" class="btn-outline-white">Partner With Us</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+============================================================ -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-icon">B</div>
+        <div class="nav-logo-text">
+          <span class="nav-logo-name">BrightPath Foundation</span>
+          <span class="nav-logo-tagline">Educate · Empower · Evolve</span>
+        </div>
+      </a>
+      <p>Closing Nigeria's digital skills gap — one young person at a time. Registered NGO, Federal Republic of Nigeria.</p>
+      <div class="footer-social">
+        <a href="#" class="social-btn">IG</a>
+        <a href="#" class="social-btn">𝕏</a>
+        <a href="#" class="social-btn">in</a>
+        <a href="#" class="social-btn">f</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="programs.html">Our Programs</a></li>
+        <li><a href="impact.html">Gallery &amp; Impact</a></li>
+        <li><a href="donate.html">Get Involved</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Programs</h4>
+      <ul>
+        <li><a href="programs.html">Tech Education</a></li>
+        <li><a href="programs.html">Mentorship</a></li>
+        <li><a href="programs.html">STEM Scholarships</a></li>
+        <li><a href="programs.html">Incubation Hubs</a></li>
+        <li><a href="programs.html">Gender Inclusion</a></li>
+        <li><a href="programs.html">IDP Programs</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <div class="footer-contact-item">
+        <span class="fi">✉</span>
+        <span>thebrightpathfoundation@gmail.com</span>
+      </div>
+      <div class="footer-contact-item">
+        <span class="fi">🌐</span>
+        <span>brightpath-foundation.org</span>
+      </div>
+      <div class="footer-contact-item">
+        <span class="fi">📍</span>
+        <span>18 Babs Shokeni Street, Dopemu, Lagos State, Nigeria</span>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 BrightPath Foundation for Digital Learning. All rights reserved.</span>
+    <span class="footer-reg">CAC REG. NO. 8453337 · TAX ID: 33143265-0001</span>
+  </div>
+</footer>
+
+<!-- ============================================================
+     SCRIPTS
+============================================================ -->
+<script>
+  // Navbar scroll effect
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Mobile menu toggle
+  function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+</script>
+
+</body>
+</html>
