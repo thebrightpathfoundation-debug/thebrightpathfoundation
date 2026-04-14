@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Programs — BrightPath Foundation for Digital Learning</title>
+  <meta name="description" content="Eight core programs equipping underserved Nigerian youth with technology and STEM skills.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; color: #1A2224; background: #fff; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+
+    :root {
+      --teal:       #0A6E6E;
+      --teal-light: #0D8A8A;
+      --teal-dark:  #064F4F;
+      --teal-pale:  #E6F4F4;
+      --gold:       #C9A84C;
+      --gold-light: #E2C97A;
+      --gold-pale:  #FBF5E6;
+      --charcoal:   #1E2528;
+      --cream:      #F9F5EF;
+      --white:      #FFFFFF;
+      --text-mid:   #3D4F53;
+      --text-soft:  #6B7E82;
+      --border:     rgba(10,110,110,0.12);
+      --shadow-sm:  0 2px 12px rgba(10,110,110,0.08);
+      --shadow-md:  0 8px 32px rgba(10,110,110,0.12);
+      --shadow-lg:  0 20px 60px rgba(10,110,110,0.16);
+      --ease:       cubic-bezier(0.4,0,0.2,1);
+    }
+
+    /* ── NAVBAR ── */
+    .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 0 5%; height: 72px; display: flex; align-items: center; justify-content: space-between; background: rgba(30,37,40,0.96); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(201,168,76,0.15); transition: all 0.3s var(--ease); }
+    .navbar.scrolled { background: rgba(6,79,79,0.97); height: 64px; }
+    .nav-logo { display: flex; align-items: center; gap: 12px; }
+    .nav-logo-icon { width: 36px; height: 36px; background: linear-gradient(135deg, var(--teal-light), var(--gold)); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 18px; color: #fff; flex-shrink: 0; }
+    .nav-logo-text { display: flex; flex-direction: column; line-height: 1.1; }
+    .nav-logo-name { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-weight: 600; color: #fff; }
+    .nav-logo-tagline { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 2px; color: var(--gold-light); text-transform: uppercase; }
+    .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+    .nav-links a { font-size: 13.5px; font-weight: 500; color: rgba(255,255,255,0.7); letter-spacing: 0.5px; transition: color 0.3s; position: relative; }
+    .nav-links a::after { content: ''; position: absolute; bottom: -3px; left: 0; right: 0; height: 1px; background: var(--gold); transform: scaleX(0); transition: transform 0.3s; transform-origin: left; }
+    .nav-links a:hover, .nav-links a.active { color: #fff; }
+    .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
+    .nav-cta { background: var(--gold) !important; color: var(--charcoal) !important; padding: 8px 20px !important; border-radius: 4px !important; font-weight: 600 !important; }
+    .nav-cta:hover { background: var(--gold-light) !important; }
+    .nav-cta::after { display: none !important; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: #fff; border-radius: 2px; }
+
+    /* ── SHARED ── */
+    .section-tag { display: inline-flex; align-items: center; gap: 8px; font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--teal); margin-bottom: 16px; }
+    .section-tag::before { content: ''; display: block; width: 24px; height: 1px; background: var(--gold); }
+    .section-heading { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem,4vw,3.2rem); font-weight: 600; line-height: 1.15; color: var(--charcoal); letter-spacing: -0.5px; }
+    .section-heading em { font-style: italic; color: var(--teal); }
+    .btn-teal { display: inline-flex; align-items: center; gap: 10px; background: var(--teal); color: #fff; padding: 14px 28px; border-radius: 4px; font-size: 14px; font-weight: 600; letter-spacing: 0.5px; border: none; cursor: pointer; transition: all 0.3s; }
+    .btn-teal:hover { background: var(--teal-dark); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+    .btn-gold { display: inline-flex; align-items: center; gap: 10px; background: var(--gold); color: var(--charcoal); padding: 15px 30px; border-radius: 4px; font-size: 14px; font-weight: 700; letter-spacing: 0.5px; border: none; cursor: pointer; transition: all 0.3s; }
+    .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201,168,76,0.35); }
+
+    /* ── PAGE HERO ── */
+    .page-hero { background: linear-gradient(135deg, var(--teal-dark) 0%, var(--charcoal) 100%); padding: 160px 5% 100px; position: relative; overflow: hidden; }
+    .page-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 80% at 85% 50%, rgba(201,168,76,0.15) 0%, transparent 70%); }
+    .page-hero-inner { position: relative; z-index: 1; max-width: 640px; }
+    .page-hero .section-tag { color: var(--gold-light); }
+    .page-hero .section-tag::before { background: var(--gold); }
+    .page-hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.8rem,5vw,4.2rem); font-weight: 600; color: #fff; line-height: 1.1; letter-spacing: -1px; margin: 16px 0 24px; }
+    .page-hero h1 em { font-style: italic; color: var(--gold-light); }
+    .page-hero p { font-size: 17px; color: rgba(255,255,255,0.65); line-height: 1.75; max-width: 520px; }
+
+    /* ── PROGRAM BLOCKS ── */
+    .programs-main { padding: 100px 5%; max-width: 1200px; margin: 0 auto; }
+
+    .program-block { display: grid; grid-template-columns: 1fr 1.4fr; gap: 64px; align-items: center; padding: 72px 0; border-bottom: 1px solid var(--border); }
+    .program-block:last-child { border-bottom: none; }
+    .program-block.reverse { grid-template-columns: 1.4fr 1fr; }
+    .program-block.reverse .prog-visual { order: 2; }
+    .program-block.reverse .prog-content { order: 1; }
+
+    .prog-visual { border-radius: 24px; aspect-ratio: 4/3; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; position: relative; overflow: hidden; }
+    .prog-visual .big-icon { font-size: 80px; opacity: 0.25; }
+    .prog-visual .prog-num { position: absolute; top: 20px; right: 24px; font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 2px; color: rgba(255,255,255,0.5); text-transform: uppercase; }
+    .prog-visual::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--teal-dark), var(--gold)); }
+
+    .pv1 { background: linear-gradient(135deg, #0A6E6E22, #0D8A8A55); border: 1px solid var(--border); }
+    .pv2 { background: linear-gradient(135deg, #E8F5E9, #66BB6A44); }
+    .pv3 { background: linear-gradient(135deg, var(--gold-pale), #E2C97A55); }
+    .pv4 { background: linear-gradient(135deg, #E3F2FD, #42A5F544); }
+    .pv5 { background: linear-gradient(135deg, #FCE4EC, #EF9A9A44); }
+    .pv6 { background: linear-gradient(135deg, #F3E5F5, #CE93D844); }
+    .pv7 { background: linear-gradient(135deg, #E8F5E9, #81C78444); }
+    .pv8 { background: linear-gradient(135deg, #FFFDE7, #FFD54F44); }
+
+    .prog-content .section-tag { margin-bottom: 12px; }
+    .prog-content h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.6rem,3vw,2.3rem); font-weight: 600; color: var(--charcoal); line-height: 1.2; margin-bottom: 16px; }
+    .prog-content h2 em { font-style: italic; color: var(--teal); }
+    .prog-content > p { font-size: 15px; color: var(--text-mid); line-height: 1.8; margin-bottom: 24px; }
+    .prog-features { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+    .prog-feature { display: flex; align-items: center; gap: 12px; font-size: 13.5px; color: var(--text-mid); }
+    .prog-feature::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--teal); flex-shrink: 0; }
+
+    /* ── IDP SPOTLIGHT ── */
+    .idp-spotlight { background: var(--teal-dark); border-radius: 32px; padding: 64px; margin: 80px 5%; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; position: relative; overflow: hidden; max-width: 1200px; margin-left: auto; margin-right: auto; }
+    .idp-spotlight::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 50% 80% at 80% 50%, rgba(201,168,76,0.1) 0%, transparent 70%); }
+    .idp-left { position: relative; z-index: 1; }
+    .idp-spotlight .section-tag { color: var(--gold-light); }
+    .idp-spotlight .section-tag::before { background: var(--gold); }
+    .idp-spotlight h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem,3vw,2.6rem); font-weight: 600; color: #fff; line-height: 1.2; margin: 12px 0 16px; }
+    .idp-spotlight h2 em { font-style: italic; color: var(--gold-light); }
+    .idp-spotlight p { font-size: 15px; color: rgba(255,255,255,0.7); line-height: 1.75; margin-bottom: 16px; }
+    .idp-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; position: relative; z-index: 1; }
+    .idp-stat { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 24px; text-align: center; }
+    .idp-stat .num { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 700; color: var(--gold-light); line-height: 1; display: block; }
+    .idp-stat .lbl { font-size: 11.5px; color: rgba(255,255,255,0.5); margin-top: 6px; display: block; letter-spacing: 0.5px; }
+
+    /* ── WHO WE SERVE ── */
+    .serve-section { background: var(--cream); padding: 100px 5%; }
+    .serve-inner { max-width: 1200px; margin: 0 auto; }
+    .serve-top { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 48px; flex-wrap: wrap; gap: 20px; }
+    .serve-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
+    .serve-card { background: #fff; border-radius: 12px; padding: 32px; border: 1px solid var(--border); text-align: center; transition: all 0.3s; }
+    .serve-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--teal-light); }
+    .serve-icon { font-size: 44px; margin-bottom: 16px; }
+    .serve-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; font-weight: 600; color: var(--charcoal); margin-bottom: 8px; }
+    .serve-card p { font-size: 13px; color: var(--text-soft); line-height: 1.65; }
+
+    /* ── M&E ── */
+    .me-section { padding: 100px 5%; max-width: 1200px; margin: 0 auto; }
+    .me-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; margin-top: 60px; }
+    .kpi-list { display: flex; flex-direction: column; gap: 16px; }
+    .kpi-item { display: flex; align-items: center; gap: 20px; padding: 20px 24px; background: #fff; border: 1px solid var(--border); border-radius: 12px; transition: all 0.3s; }
+    .kpi-item:hover { border-color: var(--teal-light); box-shadow: var(--shadow-sm); }
+    .kpi-icon { width: 48px; height: 48px; background: var(--teal-pale); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+    .kpi-text h4 { font-size: 14px; font-weight: 600; color: var(--charcoal); margin-bottom: 3px; }
+    .kpi-text p { font-size: 12.5px; color: var(--text-soft); }
+    .me-content h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.7rem; font-weight: 600; color: var(--charcoal); margin-bottom: 16px; }
+    .me-content p { font-size: 15px; color: var(--text-mid); line-height: 1.8; margin-bottom: 16px; }
+
+    /* ── CTA ── */
+    .cta-section { padding: 100px 5%; background: var(--charcoal); text-align: center; position: relative; overflow: hidden; }
+    .cta-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(10,110,110,0.2) 0%, transparent 70%); }
+    .cta-inner { position: relative; z-index: 1; max-width: 580px; margin: 0 auto; }
+    .cta-section .section-tag { color: var(--gold-light); justify-content: center; }
+    .cta-section .section-tag::before { background: var(--gold); }
+    .cta-section .section-heading { color: #fff; }
+    .cta-section p { font-size: 16px; color: rgba(255,255,255,0.6); line-height: 1.75; margin: 20px 0 40px; }
+    .cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .btn-outline { display: inline-flex; align-items: center; gap: 10px; background: transparent; color: rgba(255,255,255,0.75); padding: 14px 28px; border-radius: 4px; font-size: 14px; font-weight: 500; border: 1.5px solid rgba(255,255,255,0.2); cursor: pointer; transition: all 0.3s; }
+    .btn-outline:hover { border-color: rgba(255,255,255,0.5); color: #fff; transform: translateY(-2px); }
+
+    /* ── FOOTER ── */
+    .footer { background: var(--charcoal); color: rgba(255,255,255,0.7); padding: 64px 5% 32px; }
+    .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 48px; padding-bottom: 48px; border-bottom: 1px solid rgba(255,255,255,0.08); margin-bottom: 32px; }
+    .footer-brand p { font-size: 13.5px; line-height: 1.7; color: rgba(255,255,255,0.5); margin: 16px 0 20px; }
+    .footer-social { display: flex; gap: 10px; }
+    .social-btn { width: 36px; height: 36px; border-radius: 6px; background: rgba(255,255,255,0.06); display: flex; align-items: center; justify-content: center; font-size: 12px; color: rgba(255,255,255,0.55); transition: all 0.3s; border: 1px solid rgba(255,255,255,0.08); font-style: normal; }
+    .social-btn:hover { background: var(--teal); color: #fff; border-color: var(--teal); }
+    .footer-col h4 { font-family: 'Cormorant Garamond', serif; font-size: 16px; font-weight: 600; color: #fff; margin-bottom: 20px; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col ul li a { font-size: 13.5px; color: rgba(255,255,255,0.5); transition: color 0.3s; }
+    .footer-col ul li a:hover { color: var(--gold-light); }
+    .fci { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 12px; font-size: 13px; color: rgba(255,255,255,0.5); }
+    .fci .fi { color: var(--gold); font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; font-size: 12.5px; color: rgba(255,255,255,0.3); flex-wrap: wrap; gap: 12px; }
+    .footer-reg { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 1.5px; color: rgba(255,255,255,0.22); }
+
+    /* ── MOBILE ── */
+    @media (max-width: 1024px) {
+      .program-block, .program-block.reverse { grid-template-columns: 1fr; gap: 40px; }
+      .program-block.reverse .prog-visual { order: 0; }
+      .program-block.reverse .prog-content { order: 0; }
+      .idp-spotlight { grid-template-columns: 1fr; padding: 48px; }
+      .serve-grid { grid-template-columns: 1fr 1fr; }
+      .me-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .nav-links.open { display: flex; flex-direction: column; position: fixed; top: 72px; left: 0; right: 0; bottom: 0; background: var(--charcoal); padding: 40px 5%; gap: 24px; align-items: flex-start; z-index: 999; }
+      .nav-links.open a { font-size: 20px; }
+      .nav-cta { display: none !important; }
+      .serve-grid { grid-template-columns: 1fr; }
+      .serve-top { flex-direction: column; align-items: flex-start; }
+      .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+    }
+    @media (max-width: 480px) {
+      .footer-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-icon">B</div>
+    <div class="nav-logo-text">
+      <span class="nav-logo-name">BrightPath Foundation</span>
+      <span class="nav-logo-tagline">Educate · Empower · Evolve</span>
+    </div>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="programs.html" class="active">Programs</a></li>
+    <li><a href="impact.html">Impact</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="donate.html" class="nav-cta">Donate</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+  <div class="page-hero-inner">
+    <div class="section-tag">Our Programs</div>
+    <h1>Eight Pathways to a <em>Digital Future</em></h1>
+    <p>From coding bootcamps to IDP community programs, every BrightPath initiative is designed with one goal: creating real, lasting change in the lives of Nigeria's youth.</p>
+  </div>
+</section>
+
+<!-- PROGRAMS MAIN -->
+<section class="programs-main">
+
+  <!-- 01 -->
+  <div class="program-block">
+    <div class="prog-visual pv1">
+      <div class="big-icon">💻</div>
+      <div class="prog-num">Program 01</div>
+    </div>
+    <div class="prog-content">
+      <div class="section-tag">Foundation</div>
+      <h2>Tech Education &amp;<br><em>Digital Literacy</em></h2>
+      <p>Our flagship program provides practical, market-ready technology education to underserved communities. Participants learn coding, software development, and digital skills that have immediate value in Nigeria's growing tech economy.</p>
+      <ul class="prog-features">
+        <li class="prog-feature">Coding fundamentals &amp; software development</li>
+        <li class="prog-feature">Digital literacy &amp; internet skills</li>
+        <li class="prog-feature">Practical, hands-on learning approach</li>
+        <li class="prog-feature">Certificates of completion for all graduates</li>
+      </ul>
+      <a href="contact.html" class="btn-teal">Get Involved →</a>
+    </div>
+  </div>
+
+  <!-- 02 -->
+  <div class="program-block reverse">
+    <div class="prog-visual pv2">
+      <div class="big-icon">🤝</div>
+      <div class="prog-num">Program 02</div>
+    </div>
+    <div class="prog-content">
+      <div class="section-tag">Connections</div>
+      <h2>Mentorship <em>Programmes</em></h2>
+      <p>We connect young Nigerians with established tech professionals — creating structured mentorship relationships that provide guidance, career support, and real-world industry insight from across Nigeria and the diaspora.</p>
+      <ul class="prog-features">
+        <li class="prog-feature">1-on-1 and group mentorship formats</li>
+        <li class="prog-feature">Local, national, and diaspora mentors</li>
+        <li class="prog-feature">Career planning and industry exposure</li>
+        <li class="prog-feature">Networking and professional development</li>
+      </ul>
+      <a href="contact.html" class="btn-teal">Become a Mentor →</a>
+    </div>
+  </div>
+
+  <!-- 03 -->
+  <div class="program-block">
+    <div class="prog-visual pv3">
+      <div class="big-icon">🌱</div>
+      <div class="prog-num">Program 03</div>
+    </div>
+    <div class="prog-content">
+      <div class="section-tag">Local Solutions</div>
+      <h2>Community <em>Innovation</em></h2>
+      <p>Graduates apply their skills to real problems in their communities — building health tech platforms, agricultural tools, e-learning apps, and environmental solutions that create tangible local impact.</p>
+      <ul class="prog-features">
+        <li class="prog-feature">Participant-led technology projects</li>
+        <li class="prog-feature">Health, agriculture, and education focus areas</li>
+        <li class="prog-feature">Supported by foundation mentors and resources</li>
+        <li class="prog-feature">Community problem-solving methodology</li>
+      </ul>
+      <a href="contact.html" class="btn-teal">Partner With Us →</a>
+    </div>
+  </div>
+
+  <!-- 04 -->
+  <div class="program-block reverse">
+    <div class="prog-visual pv4">
+      <div class="big-icon">🎓</div>
+      <div class="prog-num">Program 04</div>
+    </div>
+    <div class="prog-content">
+      <div class="section-tag">Access</div>
+      <h2>STEM <em>Scholarships</em></h2>
+      <p>Financial barriers should never prevent talent from flourishing. Our scholarship and bursary programme removes the cost barrier to quality STEM and technology education for deserving young Nigerians.</p>
+      <ul class="prog-features">
+        <li class="prog-feature">Full and partial scholarship awards</li>
+        <li class="prog-feature">Collaboration with schools and institutions</li>
+        <li class="prog-feature">Curriculum integration support</li>
+        <li class="prog-feature">Annual scholarship application rounds</li>
+      </ul>
+      <a href="donate.html" class="btn-teal">Fund a Scholarship →</a>
+    </div>
+  </div>
+
+  <!-- 05 -->
+  <div class="program-block">
+    <div class="prog-visual pv5">
+      <div class="big-icon">🚀</div>
+      <div class="prog-num">Program 05</div>
+    </div>
+    <div class="prog-content">
+      <div class="section-tag">Entrepreneurship</div>
+      <h2>Incubation <em>Hubs</em></h2>
+      <p>We don't just train — we launch. BrightPath's incubation hubs provide the infrastructure, mentorship, and resources for youth to access the gig economy, secure remote employment, or build their own technology startups.</p>
+      <ul class="prog-features">
+        <li class="prog-feature">Physical and virtual hub spaces</li>
+        <li class="prog-feature">Business development support</li>
+        <li class="prog-feature">Gig economy and remote work onboarding</li>
+        <li class="prog-feature">Seed funding access and investor connections</li>
+      </ul>
+      <a href="contact.html" class="btn-teal">Get Involved →</a>
+    </div>
+  </div>
+
+  <!-- 06 -->
+  <div class="program-block reverse">
+    <div class="prog-visual pv6">
+      <div class="big-icon">♀️</div>
+      <div class="prog-num">Program 06</div>
+    </div>
+    <div class="prog-content">
+      <div class="section-tag">Equity</div>
+      <h2>Gender Inclusion <em>&amp; Advocacy</em></h2>
+      <p>Women and girls face unique barriers to technology education. Our targeted programme ensures equitable access, creates safe learning environments, and actively advocates for systemic change across Nigeria.</p>
+      <ul class="prog-features">
+        <li class="prog-feature">Women-focused training cohorts</li>
+        <li class="prog-feature">Female mentorship and role model programmes</li>
+        <li class="prog-feature">Policy advocacy for gender equity in tech</li>
+        <li class="prog-feature">Safe, supportive learning environments</li>
+      </ul>
+      <a href="contact.html" class="btn-teal">Support This Program →</a>
+    </div>
+  </div>
+
+  <!-- 07 -->
+  <div class="program-block">
+    <div class="prog-visual pv7">
+      <div class="big-icon">🌿</div>
+      <div class="prog-num">Program 07</div>
+    </div>
+    <div class="prog-content">
+      <div class="section-tag">Environment</div>
+      <h2>Environmental <em>Technology</em></h2>
+      <p>Training youth to apply technology in the fight against environmental challenges — from sustainable practices and conservation to environmental monitoring and green technology development.</p>
+      <ul class="prog-features">
+        <li class="prog-feature">Environmental monitoring technology</li>
+        <li class="prog-feature">Sustainable practices and green tech</li>
+        <li class="prog-feature">Conservation project support</li>
+        <li class="prog-feature">Community environmental initiatives</li>
+      </ul>
+      <a href="contact.html" class="btn-teal">Get Involved →</a>
+    </div>
+  </div>
+
+  <!-- 08 -->
+  <div class="program-block reverse">
+    <div class="prog-visual pv8">
+      <div class="big-icon">🕊️</div>
+      <div class="prog-num">Program 08</div>
+    </div>
+    <div class="prog-content">
+      <div class="section-tag">Cohesion</div>
+      <h2>Peacebuilding Through <em>Technology</em></h2>
+      <p>Digital platforms for dialogue, collaboration, and community development — using technology as a vehicle for peacebuilding, reconciliation, and social cohesion across Nigeria's diverse communities.</p>
+      <ul class="prog-features">
+        <li class="prog-feature">Digital dialogue and collaboration platforms</li>
+        <li class="prog-feature">Conflict-affected community outreach</li>
+        <li class="prog-feature">Cross-community tech partnerships</li>
+        <li class="prog-feature">IDP and displacement response programs</li>
+      </ul>
+      <a href="contact.html" class="btn-teal">Partner With Us →</a>
+    </div>
+  </div>
+
+</section>
+
+<!-- IDP SPOTLIGHT -->
+<div style="padding: 0 5%; max-width: 1300px; margin: 0 auto;">
+  <div class="idp-spotlight">
+    <div class="idp-left">
+      <div class="section-tag">Program in Action</div>
+      <h2>Our First Program:<br><em>IDP Camp Initiative</em></h2>
+      <p>BrightPath Foundation's first delivered program took place at an Internally Displaced Persons (IDP) camp — reaching young women in one of Nigeria's most vulnerable communities.</p>
+      <p>The program taught participants how to create <strong style="color:var(--gold-light);">reusable sanitary pads</strong> — combining practical skills with dignity, sustainability, and economic empowerment.</p>
+      <a href="impact.html" class="btn-gold" style="margin-top:8px;">See Full Impact Story →</a>
+    </div>
+    <div class="idp-stats">
+      <div class="idp-stat"><span class="num">1</span><span class="lbl">Program Completed</span></div>
+      <div class="idp-stat"><span class="num">IDP</span><span class="lbl">Camp Reached</span></div>
+      <div class="idp-stat"><span class="num">♀️</span><span class="lbl">Women-Focused</span></div>
+      <div class="idp-stat"><span class="num">2025</span><span class="lbl">Year Launched</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- WHO WE SERVE -->
+<section class="serve-section">
+  <div class="serve-inner">
+    <div class="serve-top">
+      <div>
+        <div class="section-tag">Who We Serve</div>
+        <h2 class="section-heading">Communities We <em>Reach</em></h2>
+      </div>
+    </div>
+    <div class="serve-grid">
+      <div class="serve-card"><div class="serve-icon">🌾</div><h3>Rural Communities</h3><p>Communities with no internet infrastructure or digital learning facilities — where our work has the greatest impact.</p></div>
+      <div class="serve-card"><div class="serve-icon">🏙️</div><h3>Urban Low-Income Areas</h3><p>City neighbourhoods where youth lack access to quality technology education despite proximity to opportunity.</p></div>
+      <div class="serve-card"><div class="serve-icon">⚡</div><h3>Resource-Affected Communities</h3><p>Communities whose traditional livelihoods have been disrupted and need new economic pathways.</p></div>
+      <div class="serve-card"><div class="serve-icon">♀️</div><h3>Women &amp; Girls</h3><p>Facing systemic barriers to education and economic advancement — we ensure they are never left behind.</p></div>
+      <div class="serve-card"><div class="serve-icon">🏕️</div><h3>Displaced Youth</h3><p>Young people affected by conflict, displacement, or instability with no clear pathway to independence.</p></div>
+      <div class="serve-card"><div class="serve-icon">🎯</div><h3>Aspiring Entrepreneurs</h3><p>Young Nigerians with ideas and drive who need skills, mentorship, and resources to build their ventures.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- M&E -->
+<section class="me-section">
+  <div class="section-tag">Accountability</div>
+  <h2 class="section-heading">How We Measure <em>Impact</em></h2>
+  <div class="me-grid">
+    <div class="kpi-list">
+      <div class="kpi-item"><div class="kpi-icon">👥</div><div class="kpi-text"><h4>Individuals Trained</h4><p>Number of youth completing technology and digital skills training</p></div></div>
+      <div class="kpi-item"><div class="kpi-icon">💼</div><div class="kpi-text"><h4>Employment Rate</h4><p>Post-training employment and entrepreneurship rates among graduates</p></div></div>
+      <div class="kpi-item"><div class="kpi-icon">📡</div><div class="kpi-text"><h4>Technology Access</h4><p>Expansion of internet and digital resource access in target communities</p></div></div>
+      <div class="kpi-item"><div class="kpi-icon">🌱</div><div class="kpi-text"><h4>Community Impact</h4><p>Improvements driven by participant-led technology projects</p></div></div>
+    </div>
+    <div class="me-content">
+      <h3>Transparent &amp; Accountable</h3>
+      <p>BrightPath Foundation operates a robust monitoring and evaluation framework to ensure measurable, transparent, and accountable impact across all programs.</p>
+      <p>Quarterly progress reports are provided to all stakeholders and funders — ensuring full transparency at every stage of our work.</p>
+      <p>Every program is tracked against clear KPIs so we can report honestly on what's working and continuously improve.</p>
+      <a href="contact.html" class="btn-teal">Become a Partner →</a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-inner">
+    <div class="section-tag">Fund the Work</div>
+    <h2 class="section-heading">Help Us <em>Scale</em> These Programs</h2>
+    <p>Every donation directly funds training, scholarships, and equipment for underserved Nigerian youth. Be part of the solution.</p>
+    <div class="cta-btns">
+      <a href="donate.html" class="btn-gold">Donate Now →</a>
+      <a href="contact.html" class="btn-outline">Partner With Us</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-icon">B</div>
+        <div class="nav-logo-text">
+          <span class="nav-logo-name">BrightPath Foundation</span>
+          <span class="nav-logo-tagline">Educate · Empower · Evolve</span>
+        </div>
+      </a>
+      <p>Closing Nigeria's digital skills gap — one young person at a time.</p>
+      <div class="footer-social">
+        <a href="#" class="social-btn">IG</a>
+        <a href="#" class="social-btn">𝕏</a>
+        <a href="#" class="social-btn">in</a>
+        <a href="#" class="social-btn">f</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Us</a></li>
+        <li><a href="programs.html">Our Programs</a></li>
+        <li><a href="impact.html">Gallery &amp; Impact</a></li>
+        <li><a href="donate.html">Get Involved</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Programs</h4>
+      <ul>
+        <li><a href="programs.html">Tech Education</a></li>
+        <li><a href="programs.html">Mentorship</a></li>
+        <li><a href="programs.html">STEM Scholarships</a></li>
+        <li><a href="programs.html">Incubation Hubs</a></li>
+        <li><a href="programs.html">Gender Inclusion</a></li>
+        <li><a href="programs.html">IDP Programs</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <div class="fci"><span class="fi">✉</span><span>thebrightpathfoundation@gmail.com</span></div>
+      <div class="fci"><span class="fi">🌐</span><span>brightpath-foundation.org</span></div>
+      <div class="fci"><span class="fi">📍</span><span>18 Babs Shokeni Street, Dopemu, Lagos, Nigeria</span></div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 BrightPath Foundation for Digital Learning. All rights reserved.</span>
+    <span class="footer-reg">CAC REG. NO. 8453337 · TAX ID: 33143265-0001</span>
+  </div>
+</footer>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 60));
+  function toggleMenu() { document.getElementById('navLinks').classList.toggle('open'); }
+</script>
+</body>
+</html>
