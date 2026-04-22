@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Get Involved & Donate — BrightPath Foundation</title>
-  <meta name="description" content="Support BrightPath Foundation — donate, sponsor, or volunteer to help close Nigeria's digital skills gap.">
+  <title>Give — BrightPath Foundation for Digital Learning</title>
+  <meta name="description" content="Support BrightPath Foundation — fund tech education for underserved Nigerian youth.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -30,7 +30,7 @@
       --border:     rgba(10,110,110,0.12);
       --shadow-sm:  0 2px 12px rgba(10,110,110,0.08);
       --shadow-md:  0 8px 32px rgba(10,110,110,0.12);
-      --shadow-lg:  0 20px 60px rgba(10,110,110,0.16);
+      --shadow-lg:  0 24px 64px rgba(10,110,110,0.18);
     }
 
     /* ── NAVBAR ── */
@@ -59,102 +59,330 @@
     .section-heading em { font-style: italic; color: var(--teal); }
     .btn-teal { display: inline-flex; align-items: center; gap: 10px; background: var(--teal); color: #fff; padding: 14px 28px; border-radius: 4px; font-size: 14px; font-weight: 600; border: none; cursor: pointer; transition: all 0.3s; }
     .btn-teal:hover { background: var(--teal-dark); transform: translateY(-2px); box-shadow: var(--shadow-md); }
-    .btn-gold { display: inline-flex; align-items: center; gap: 10px; background: var(--gold); color: var(--charcoal); padding: 15px 30px; border-radius: 4px; font-size: 14px; font-weight: 700; border: none; cursor: pointer; transition: all 0.3s; }
-    .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201,168,76,0.35); }
-    .btn-outline { display: inline-flex; align-items: center; gap: 10px; background: transparent; color: rgba(255,255,255,0.75); padding: 14px 28px; border-radius: 4px; font-size: 14px; font-weight: 500; border: 1.5px solid rgba(255,255,255,0.2); cursor: pointer; transition: all 0.3s; }
-    .btn-outline:hover { border-color: rgba(255,255,255,0.5); color: #fff; transform: translateY(-2px); }
 
-    /* ── PAGE HERO ── */
-    .page-hero { background: var(--teal-dark); padding: 160px 5% 100px; position: relative; overflow: hidden; }
-    .page-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 50% 80% at 85% 50%, rgba(201,168,76,0.18) 0%, transparent 70%), radial-gradient(ellipse 40% 60% at 10% 80%, rgba(255,255,255,0.04) 0%, transparent 60%); }
-    .page-hero-inner { position: relative; z-index: 1; max-width: 640px; }
-    .page-hero .section-tag { color: var(--gold-light); }
-    .page-hero .section-tag::before { background: var(--gold); }
-    .page-hero h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.8rem,5vw,4.2rem); font-weight: 600; color: #fff; line-height: 1.1; letter-spacing: -1px; margin: 16px 0 24px; }
-    .page-hero h1 em { font-style: italic; color: var(--gold-light); }
-    .page-hero p { font-size: 17px; color: rgba(255,255,255,0.65); line-height: 1.75; max-width: 520px; }
+    /* ══════════════════════════════════════
+       PAGE HERO — split layout
+    ══════════════════════════════════════ */
+    .page-hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
 
-    /* ── INDIVIDUAL GIVING ── */
-    .give-section { padding: 100px 5%; max-width: 1200px; margin: 0 auto; }
-    .give-header { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; margin-bottom: 64px; }
-    .give-header p { font-size: 15.5px; color: var(--text-mid); line-height: 1.85; }
-    .give-cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+    /* Left — dark side */
+    .hero-left {
+      background: var(--charcoal);
+      padding: 160px 6% 80px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .hero-left::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 80% at 20% 80%, rgba(10,110,110,0.2) 0%, transparent 70%);
+    }
+    .hero-left-inner { position: relative; z-index: 1; }
+    .hero-left .section-tag { color: var(--gold-light); }
+    .hero-left .section-tag::before { background: var(--gold); }
+    .hero-left h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 5vw, 4.8rem);
+      font-weight: 600; color: #fff;
+      line-height: 1.05; letter-spacing: -1.5px;
+      margin: 16px 0 24px;
+    }
+    .hero-left h1 em { font-style: italic; color: var(--gold-light); }
+    .hero-left p { font-size: 16px; color: rgba(255,255,255,0.6); line-height: 1.8; max-width: 400px; margin-bottom: 48px; }
 
-    .give-card { border-radius: 20px; padding: 40px 32px; border: 1px solid var(--border); position: relative; overflow: hidden; transition: all 0.3s; background: #fff; }
-    .give-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
-    .give-card.featured { background: var(--teal-dark); border-color: var(--teal); }
-    .featured-tag { position: absolute; top: 20px; right: -30px; background: var(--gold); color: var(--charcoal); padding: 5px 52px; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; transform: rotate(35deg); }
-    .give-amount { font-family: 'Cormorant Garamond', serif; font-size: 2.8rem; font-weight: 700; color: var(--teal); line-height: 1; display: block; margin-bottom: 4px; }
-    .give-card.featured .give-amount { color: var(--gold-light); }
-    .give-tier { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; display: block; }
-    .give-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; font-weight: 600; color: var(--charcoal); margin-bottom: 10px; }
-    .give-card.featured h3 { color: var(--gold-light); }
-    .give-card > p { font-size: 13.5px; color: var(--text-mid); line-height: 1.7; margin-bottom: 20px; }
-    .give-card.featured > p { color: rgba(255,255,255,0.7); }
-    .give-items { list-style: none; display: flex; flex-direction: column; gap: 9px; margin-bottom: 28px; }
-    .give-item { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--text-mid); }
-    .give-card.featured .give-item { color: rgba(255,255,255,0.8); }
-    .give-item::before { content: '✓'; width: 18px; height: 18px; border-radius: 50%; background: var(--teal-pale); color: var(--teal); display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; flex-shrink: 0; }
-    .give-card.featured .give-item::before { background: rgba(255,255,255,0.1); color: var(--gold-light); }
+    /* Impact numbers in hero */
+    .hero-numbers { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+    .hero-num {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
+      padding: 20px 22px;
+    }
+    .hero-num:first-child { border-radius: 8px 0 0 8px; }
+    .hero-num:last-child  { border-radius: 0 8px 8px 0; }
+    .hn-val { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 700; color: var(--gold-light); line-height: 1; display: block; }
+    .hn-lbl { font-size: 11px; color: rgba(255,255,255,0.4); letter-spacing: 0.5px; margin-top: 4px; display: block; }
 
-    /* ── CORPORATE TIERS ── */
-    .sponsors-section { background: var(--cream); padding: 100px 5%; }
-    .sponsors-inner { max-width: 1200px; margin: 0 auto; }
-    .sponsors-header { margin-bottom: 56px; }
-    .tiers-list { display: flex; flex-direction: column; gap: 16px; }
-    .tier-row { display: grid; grid-template-columns: 130px 1fr auto; gap: 32px; align-items: center; padding: 28px 36px; background: #fff; border-radius: 16px; border: 1px solid var(--border); transition: all 0.3s; }
-    .tier-row:hover { border-color: var(--teal-light); box-shadow: var(--shadow-sm); }
-    .tier-badge { display: flex; flex-direction: column; align-items: center; gap: 6px; }
-    .tier-medal { font-size: 36px; line-height: 1; }
-    .tier-name { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; }
-    .bronze .tier-name { color: #CD7F32; }
-    .silver .tier-name { color: #9E9E9E; }
-    .gold-tier .tier-name { color: var(--gold); }
-    .platinum .tier-name { color: var(--teal); }
-    .tier-info h4 { font-size: 15.5px; font-weight: 600; color: var(--charcoal); margin-bottom: 5px; }
-    .tier-info p { font-size: 13px; color: var(--text-soft); line-height: 1.6; }
-    .tier-amount { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 700; color: var(--charcoal); white-space: nowrap; }
-    .sponsors-cta { text-align: center; margin-top: 40px; }
+    /* Right — form side */
+    .hero-right {
+      background: var(--cream);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 120px 6% 80px;
+    }
+    .form-wrap { width: 100%; max-width: 460px; }
 
-    /* ── HOW TO DONATE ── */
-    .how-section { padding: 100px 5%; max-width: 1200px; margin: 0 auto; }
+    /* ── DONATION FORM ── */
+    .form-card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 44px;
+      box-shadow: var(--shadow-lg);
+      border: 1px solid var(--border);
+    }
+
+    .form-card-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.9rem; font-weight: 600;
+      color: var(--charcoal); margin-bottom: 4px;
+    }
+    .form-card-sub { font-size: 13.5px; color: var(--text-soft); margin-bottom: 28px; }
+
+    /* Frequency pills */
+    .freq-row { display: flex; gap: 8px; margin-bottom: 28px; }
+    .freq-pill {
+      flex: 1; padding: 11px 0;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13.5px; font-weight: 600;
+      text-align: center;
+      background: #fff; color: var(--text-mid);
+      border: 1.5px solid var(--border);
+      border-radius: 100px; cursor: pointer;
+      transition: all 0.25s;
+    }
+    .freq-pill.active { background: var(--teal); color: #fff; border-color: var(--teal); }
+
+    /* Monthly note */
+    .monthly-note {
+      display: none;
+      background: var(--teal-pale);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 12.5px;
+      color: var(--teal-dark);
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+    .monthly-note.show { display: block; }
+
+    /* Divider label */
+    .form-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-soft); margin-bottom: 10px; display: block; }
+
+    /* Amount grid */
+    .amount-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; margin-bottom: 12px; }
+    .amt-btn {
+      padding: 14px 0;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem; font-weight: 600;
+      color: var(--charcoal);
+      background: #fff;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: center;
+    }
+    .amt-btn:hover { border-color: var(--teal); color: var(--teal); background: var(--teal-pale); }
+    .amt-btn.picked { background: var(--teal); color: #fff; border-color: var(--teal); }
+
+    /* Custom input */
+    .custom-row { position: relative; margin-bottom: 24px; }
+    .custom-row .sym { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 600; color: var(--text-soft); pointer-events: none; }
+    .custom-row input {
+      width: 100%; padding: 13px 14px 13px 28px;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px; color: var(--charcoal);
+      background: #fff; outline: none;
+      transition: all 0.3s;
+    }
+    .custom-row input:focus { border-color: var(--teal); box-shadow: 0 0 0 3px rgba(10,110,110,0.09); }
+    .custom-row input::placeholder { color: #ccc; }
+
+    /* Divider */
+    .form-divider { height: 1px; background: var(--border); margin: 4px 0 20px; }
+
+    /* Name + email */
+    .fields-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+    .field { display: flex; flex-direction: column; gap: 5px; }
+    .field label { font-size: 10.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.2px; color: var(--charcoal); }
+    .field input {
+      padding: 11px 13px;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px; color: var(--charcoal);
+      outline: none; transition: all 0.3s;
+    }
+    .field input:focus { border-color: var(--teal); box-shadow: 0 0 0 3px rgba(10,110,110,0.09); }
+    .field input::placeholder { color: #bbb; }
+    .field-full { margin-bottom: 20px; }
+    .field-full label { display: block; font-size: 10.5px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.2px; color: var(--charcoal); margin-bottom: 5px; }
+    .field-full input {
+      width: 100%; padding: 11px 13px;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px; color: var(--charcoal);
+      outline: none; transition: all 0.3s;
+    }
+    .field-full input:focus { border-color: var(--teal); box-shadow: 0 0 0 3px rgba(10,110,110,0.09); }
+    .field-full input::placeholder { color: #bbb; }
+
+    /* Give button */
+    .give-btn {
+      width: 100%; padding: 16px;
+      background: var(--teal); color: #fff;
+      border: none; border-radius: 10px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px; font-weight: 700;
+      letter-spacing: 0.3px; cursor: pointer;
+      transition: all 0.3s; margin-bottom: 12px;
+    }
+    .give-btn:hover { background: var(--teal-dark); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+
+    .lock-note { display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 11.5px; color: var(--text-soft); }
+
+    /* Success */
+    .form-success { display: none; text-align: center; padding: 32px 0; }
+    .form-success .s-emoji { font-size: 60px; margin-bottom: 16px; }
+    .form-success h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--teal); margin-bottom: 8px; }
+    .form-success p { font-size: 14.5px; color: var(--text-mid); line-height: 1.7; }
+
+    /* ══════════════════════════════════════
+       CORPORATE TIERS
+    ══════════════════════════════════════ */
+    .tiers-section { padding: 100px 5%; background: #fff; }
+    .tiers-inner { max-width: 1100px; margin: 0 auto; }
+    .tiers-header { margin-bottom: 56px; }
+    .tiers-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; }
+    .tier-card {
+      border-radius: 16px; padding: 36px 28px;
+      border: 1px solid var(--border);
+      transition: all 0.3s; background: #fff;
+      position: relative; overflow: hidden;
+    }
+    .tier-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+    }
+    .tier-card.bronze::before { background: linear-gradient(90deg,#CD7F32,#E8A44A); }
+    .tier-card.silver::before { background: linear-gradient(90deg,#9E9E9E,#BDBDBD); }
+    .tier-card.gold::before   { background: linear-gradient(90deg,var(--gold),var(--gold-light)); }
+    .tier-card.platinum::before { background: linear-gradient(90deg,var(--teal),var(--teal-light)); }
+    .tier-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .tier-medal { font-size: 32px; margin-bottom: 12px; }
+    .tier-label { font-family: 'Space Mono', monospace; font-size: 9px; letter-spacing: 2.5px; text-transform: uppercase; font-weight: 700; margin-bottom: 8px; display: block; }
+    .tier-card.bronze .tier-label { color: #CD7F32; }
+    .tier-card.silver .tier-label { color: #9E9E9E; }
+    .tier-card.gold   .tier-label { color: var(--gold); }
+    .tier-card.platinum .tier-label { color: var(--teal); }
+    .tier-price { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 700; color: var(--charcoal); line-height: 1; display: block; margin-bottom: 16px; }
+    .tier-perks { list-style: none; display: flex; flex-direction: column; gap: 8px; margin-bottom: 24px; }
+    .tier-perk { display: flex; align-items: flex-start; gap: 8px; font-size: 13px; color: var(--text-mid); line-height: 1.4; }
+    .tier-perk::before { content: '✓'; color: var(--teal); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+
+    .tiers-cta { text-align: center; margin-top: 40px; }
+
+    /* ══════════════════════════════════════
+       HOW IT WORKS
+    ══════════════════════════════════════ */
+    .how-section { background: var(--cream); padding: 100px 5%; }
+    .how-inner { max-width: 1100px; margin: 0 auto; }
     .how-header { margin-bottom: 56px; }
-    .how-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 24px; }
-    .how-card { background: #fff; border: 1px solid var(--border); border-radius: 20px; padding: 40px; transition: all 0.3s; }
-    .how-card:hover { border-color: var(--teal-light); box-shadow: var(--shadow-md); transform: translateY(-4px); }
-    .how-icon { font-size: 44px; margin-bottom: 20px; }
-    .how-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; font-weight: 600; color: var(--charcoal); margin-bottom: 10px; }
-    .how-card p { font-size: 13.5px; color: var(--text-mid); line-height: 1.75; margin-bottom: 20px; }
-    .method-tag { display: inline-block; padding: 5px 14px; border-radius: 100px; font-size: 11px; font-weight: 600; letter-spacing: 0.5px; }
-    .method-tag.primary { background: var(--teal-pale); color: var(--teal-dark); }
-    .method-tag.secondary { background: var(--gold-pale); color: #8B6914; }
+    .how-steps { display: grid; grid-template-columns: repeat(4,1fr); gap: 0; position: relative; }
+    .how-steps::before {
+      content: '';
+      position: absolute;
+      top: 28px; left: 14%; right: 14%;
+      height: 1px; background: var(--border);
+    }
+    .how-step { text-align: center; padding: 0 20px; }
+    .step-num {
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      background: #fff;
+      border: 2px solid var(--teal);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem; font-weight: 700;
+      color: var(--teal);
+      margin: 0 auto 20px;
+      position: relative; z-index: 1;
+    }
+    .how-step h4 { font-size: 14.5px; font-weight: 600; color: var(--charcoal); margin-bottom: 8px; }
+    .how-step p { font-size: 13px; color: var(--text-soft); line-height: 1.65; }
 
-    /* ── IMPACT BREAKDOWN ── */
-    .impact-bd { background: var(--charcoal); padding: 100px 5%; }
-    .impact-bd-inner { max-width: 1200px; margin: 0 auto; }
-    .impact-bd-inner .section-tag { color: var(--gold-light); }
-    .impact-bd-inner .section-tag::before { background: var(--gold); }
-    .impact-bd-inner .section-heading { color: #fff; margin-bottom: 56px; }
-    .impact-bd-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
-    .ibd-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 36px; text-align: center; transition: all 0.3s; }
-    .ibd-card:hover { background: rgba(255,255,255,0.07); border-color: rgba(201,168,76,0.3); }
-    .ibd-amount { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 700; color: var(--gold-light); display: block; margin-bottom: 8px; }
-    .ibd-card h4 { font-size: 14.5px; font-weight: 600; color: #fff; margin-bottom: 10px; }
-    .ibd-card p { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.65; }
+    /* ══════════════════════════════════════
+       PAYMENT METHODS
+    ══════════════════════════════════════ */
+    .pay-section { padding: 100px 5%; max-width: 1100px; margin: 0 auto; }
+    .pay-header { margin-bottom: 56px; }
+    .pay-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; }
+    .pay-card {
+      display: flex; align-items: flex-start; gap: 20px;
+      padding: 28px 32px;
+      border: 1px solid var(--border);
+      border-radius: 16px; background: #fff;
+      transition: all 0.3s;
+    }
+    .pay-card:hover { border-color: var(--teal-light); box-shadow: var(--shadow-sm); }
+    .pay-icon {
+      width: 52px; height: 52px;
+      background: var(--teal-pale);
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px; flex-shrink: 0;
+    }
+    .pay-card h4 { font-size: 15px; font-weight: 600; color: var(--charcoal); margin-bottom: 4px; }
+    .pay-card p { font-size: 13px; color: var(--text-soft); line-height: 1.65; }
+    .pay-badge { display: inline-block; margin-top: 8px; padding: 3px 10px; border-radius: 100px; font-size: 10.5px; font-weight: 600; }
+    .pay-badge.primary { background: var(--teal-pale); color: var(--teal-dark); }
+    .pay-badge.secondary { background: var(--gold-pale); color: #8B6914; }
 
-    /* ── VOLUNTEER ── */
-    .volunteer-section { padding: 100px 5%; max-width: 1200px; margin: 0 auto; }
-    .volunteer-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 80px; align-items: center; margin-top: 60px; }
-    .vol-content p { font-size: 15.5px; color: var(--text-mid); line-height: 1.85; margin-bottom: 16px; }
-    .vol-roles { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 32px; }
-    .vol-role { display: flex; align-items: center; gap: 10px; padding: 14px 16px; background: var(--cream); border-radius: 12px; font-size: 13.5px; color: var(--text-mid); border: 1px solid var(--border); transition: all 0.3s; }
-    .vol-role:hover { border-color: var(--teal-light); background: var(--teal-pale); }
-    .diaspora-box { background: var(--teal-pale); border: 1px solid rgba(10,110,110,0.15); border-radius: 32px; padding: 48px; text-align: center; }
-    .diaspora-box .d-icon { font-size: 56px; margin-bottom: 20px; }
-    .diaspora-box h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 600; color: var(--charcoal); margin-bottom: 12px; }
-    .diaspora-box p { font-size: 14px; color: var(--text-mid); margin-bottom: 24px; line-height: 1.75; }
+    /* ══════════════════════════════════════
+       VOLUNTEER
+    ══════════════════════════════════════ */
+    .vol-section { background: var(--teal-dark); padding: 100px 5%; }
+    .vol-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .vol-left .section-tag { color: var(--gold-light); }
+    .vol-left .section-tag::before { background: var(--gold); }
+    .vol-left .section-heading { color: #fff; margin-bottom: 20px; }
+    .vol-left p { font-size: 15px; color: rgba(255,255,255,0.65); line-height: 1.85; margin-bottom: 32px; }
+    .vol-roles { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 36px; }
+    .vol-role {
+      display: flex; align-items: center; gap: 10px;
+      padding: 12px 16px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px;
+      font-size: 13px; color: rgba(255,255,255,0.8);
+      transition: all 0.3s;
+    }
+    .vol-role:hover { background: rgba(255,255,255,0.1); }
+    .btn-gold-solid {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: var(--gold); color: var(--charcoal);
+      padding: 14px 28px; border-radius: 4px;
+      font-size: 14px; font-weight: 700;
+      border: none; cursor: pointer; transition: all 0.3s;
+    }
+    .btn-gold-solid:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201,168,76,0.35); }
 
-    /* ── FOOTER ── */
+    .diaspora-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 24px; padding: 48px;
+      text-align: center;
+    }
+    .diaspora-card .d-icon { font-size: 56px; margin-bottom: 20px; }
+    .diaspora-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 600; color: var(--gold-light); margin-bottom: 12px; }
+    .diaspora-card p { font-size: 14px; color: rgba(255,255,255,0.65); line-height: 1.75; margin-bottom: 28px; }
+
+    /* ══════════════════════════════════════
+       FOOTER
+    ══════════════════════════════════════ */
     .footer { background: var(--charcoal); color: rgba(255,255,255,0.7); padding: 64px 5% 32px; }
     .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 48px; padding-bottom: 48px; border-bottom: 1px solid rgba(255,255,255,0.08); margin-bottom: 32px; }
     .footer-brand p { font-size: 13.5px; line-height: 1.7; color: rgba(255,255,255,0.5); margin: 16px 0 20px; }
@@ -173,11 +401,13 @@
 
     /* ── MOBILE ── */
     @media (max-width: 1024px) {
-      .give-cards { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
-      .give-header { grid-template-columns: 1fr; gap: 32px; }
-      .how-grid { grid-template-columns: 1fr; }
-      .impact-bd-grid { grid-template-columns: 1fr 1fr; }
-      .volunteer-grid { grid-template-columns: 1fr; gap: 48px; }
+      .page-hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-left { padding: 140px 5% 60px; }
+      .hero-right { padding: 60px 5% 80px; }
+      .tiers-grid { grid-template-columns: 1fr 1fr; }
+      .how-steps { grid-template-columns: 1fr 1fr; gap: 40px; }
+      .how-steps::before { display: none; }
+      .vol-inner { grid-template-columns: 1fr; gap: 48px; }
     }
     @media (max-width: 768px) {
       .nav-links { display: none; }
@@ -185,14 +415,19 @@
       .nav-links.open { display: flex; flex-direction: column; position: fixed; top: 72px; left: 0; right: 0; bottom: 0; background: var(--charcoal); padding: 40px 5%; gap: 24px; align-items: flex-start; z-index: 999; }
       .nav-links.open a { font-size: 20px; }
       .nav-cta { display: none !important; }
-      .tier-row { grid-template-columns: 90px 1fr; }
-      .tier-amount { display: none; }
-      .impact-bd-grid { grid-template-columns: 1fr; }
+      .tiers-grid { grid-template-columns: 1fr; }
+      .how-steps { grid-template-columns: 1fr; }
+      .pay-grid { grid-template-columns: 1fr; }
+      .fields-row { grid-template-columns: 1fr; }
       .vol-roles { grid-template-columns: 1fr; }
       .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .form-card { padding: 32px 24px; }
     }
     @media (max-width: 480px) {
+      .hero-numbers { grid-template-columns: 1fr 1fr; }
+      .amount-grid { grid-template-columns: repeat(3,1fr); }
       .footer-grid { grid-template-columns: 1fr; }
+      .freq-row { flex-direction: row; }
     }
   </style>
 </head>
@@ -220,214 +455,251 @@
   </div>
 </nav>
 
-<!-- PAGE HERO -->
+<!-- SPLIT HERO + FORM -->
 <section class="page-hero">
-  <div class="page-hero-inner">
-    <div class="section-tag">Get Involved</div>
-    <h1>Fund <em>Nigeria's</em><br>Digital Future</h1>
-    <p>Your investment provides computers, scholarships, mentorship, and community tech hubs for underserved Nigerian youth. Every contribution — at any level — creates lasting change.</p>
+
+  <!-- LEFT: Mission + numbers -->
+  <div class="hero-left">
+    <div class="hero-left-inner">
+      <div class="section-tag">Give Today</div>
+      <h1>Fund a<br><em>Brighter</em><br>Nigeria</h1>
+      <p>Every contribution — large or small — goes directly into programs that equip underserved Nigerian youth with the technology skills to build their own futures.</p>
+      <div class="hero-numbers">
+        <div class="hero-num">
+          <span class="hn-val">$25</span>
+          <span class="hn-lbl">Funds one month</span>
+        </div>
+        <div class="hero-num">
+          <span class="hn-val">$100</span>
+          <span class="hn-lbl">Full training</span>
+        </div>
+        <div class="hero-num">
+          <span class="hn-val">$500</span>
+          <span class="hn-lbl">Hub equipment</span>
+        </div>
+        <div class="hero-num">
+          <span class="hn-val">$1K</span>
+          <span class="hn-lbl">Full cohort</span>
+        </div>
+      </div>
+    </div>
   </div>
+
+  <!-- RIGHT: Donation form -->
+  <div class="hero-right">
+    <div class="form-wrap">
+      <div class="form-card">
+        <div class="form-card-title">Make Your Gift</div>
+        <div class="form-card-sub">Secure · Transparent · Impactful</div>
+
+        <div id="donateForm">
+          <!-- Frequency -->
+          <div class="freq-row">
+            <button class="freq-pill active" id="pillOnce" onclick="setFreq('once')">Give Once</button>
+            <button class="freq-pill" id="pillMonthly" onclick="setFreq('monthly')">Give Monthly</button>
+          </div>
+
+          <div class="monthly-note" id="monthlyNote">
+            Monthly giving builds the reliable income that lets BrightPath plan and scale programs across Nigeria year-round.
+          </div>
+
+          <!-- Amount -->
+          <span class="form-label">Choose an Amount (USD)</span>
+          <div class="amount-grid">
+            <button class="amt-btn" onclick="pickAmt(this,25)">$25</button>
+            <button class="amt-btn picked" onclick="pickAmt(this,50)">$50</button>
+            <button class="amt-btn" onclick="pickAmt(this,100)">$100</button>
+            <button class="amt-btn" onclick="pickAmt(this,250)">$250</button>
+            <button class="amt-btn" onclick="pickAmt(this,500)">$500</button>
+            <button class="amt-btn" onclick="pickAmt(this,0)">Other</button>
+          </div>
+
+          <!-- Custom -->
+          <div class="custom-row" id="customRow" style="display:none;">
+            <span class="sym">$</span>
+            <input type="number" id="customAmt" placeholder="Enter your amount" min="1">
+          </div>
+
+          <div class="form-divider"></div>
+
+          <!-- Donor details -->
+          <div class="fields-row">
+            <div class="field">
+              <label for="gFirst">First Name</label>
+              <input type="text" id="gFirst" placeholder="First name">
+            </div>
+            <div class="field">
+              <label for="gLast">Last Name</label>
+              <input type="text" id="gLast" placeholder="Last name">
+            </div>
+          </div>
+          <div class="field-full">
+            <label for="gEmail">Email Address</label>
+            <input type="email" id="gEmail" placeholder="your@email.com">
+          </div>
+
+          <button class="give-btn" onclick="submitGift()">
+            <span id="giveBtnLabel">Donate $50 →</span>
+          </button>
+          <div class="lock-note">🔒 Secure &amp; encrypted payment</div>
+        </div>
+
+        <!-- Success -->
+        <div class="form-success" id="formSuccess">
+          <div class="s-emoji">💚</div>
+          <h3>Thank You!</h3>
+          <p>Your gift is making a real difference. A receipt is on its way to your inbox.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </section>
 
-<!-- INDIVIDUAL GIVING -->
-<section class="give-section">
-  <div class="give-header">
-    <div>
-      <div class="section-tag">Individual Giving</div>
-      <h2 class="section-heading">Choose Your <em>Impact</em></h2>
-    </div>
-    <p>Whether you are an individual supporter or a corporate partner, there is a way for you to be part of BrightPath's mission. Every naira and dollar we receive goes directly to programs that change lives.</p>
-  </div>
-
-  <div class="give-cards">
-    <!-- Supporter -->
-    <div class="give-card">
-      <span class="give-amount">$25</span>
-      <span class="give-tier">Supporter</span>
-      <h3>Starter Impact</h3>
-      <p>Provides basic digital learning materials for one participant in our programs.</p>
-      <ul class="give-items">
-        <li class="give-item">Digital literacy workbook</li>
-        <li class="give-item">One month program access</li>
-        <li class="give-item">Certificate of completion</li>
-      </ul>
-      <a href="contact.html" class="btn-teal" style="width:100%; justify-content:center;">Donate $25</a>
-    </div>
-
-    <!-- Champion — featured -->
-    <div class="give-card featured">
-      <div class="featured-tag">Popular</div>
-      <span class="give-amount">$100</span>
-      <span class="give-tier">Champion</span>
-      <h3>Full Training Access</h3>
-      <p>Covers the full cost of one participant's training in our flagship tech education program.</p>
-      <ul class="give-items">
-        <li class="give-item">Full 3-month tech training</li>
-        <li class="give-item">Mentorship connection</li>
-        <li class="give-item">Tools and equipment</li>
-        <li class="give-item">Graduate employment support</li>
-      </ul>
-      <a href="contact.html" class="btn-gold" style="width:100%; justify-content:center;">Donate $100</a>
-    </div>
-
-    <!-- Patron -->
-    <div class="give-card">
-      <span class="give-amount">$500</span>
-      <span class="give-tier">Patron</span>
-      <h3>Community Multiplier</h3>
-      <p>Funds a full cohort of 5 participants through our digital skills program from training to employment.</p>
-      <ul class="give-items">
-        <li class="give-item">5 full participant sponsorships</li>
-        <li class="give-item">Community tech equipment</li>
-        <li class="give-item">Program naming rights</li>
-        <li class="give-item">Quarterly impact reports</li>
-      </ul>
-      <a href="contact.html" class="btn-teal" style="width:100%; justify-content:center;">Donate $500</a>
-    </div>
-  </div>
-</section>
-
-<!-- CORPORATE SPONSORSHIP -->
-<section class="sponsors-section">
-  <div class="sponsors-inner">
-    <div class="sponsors-header">
+<!-- CORPORATE TIERS -->
+<section class="tiers-section">
+  <div class="tiers-inner">
+    <div class="tiers-header">
       <div class="section-tag">Corporate Giving</div>
-      <h2 class="section-heading">Corporate <em>Sponsorship</em> Tiers</h2>
+      <h2 class="section-heading">Partner With <em>Purpose</em></h2>
     </div>
-    <div class="tiers-list">
-      <div class="tier-row bronze">
-        <div class="tier-badge">
-          <div class="tier-medal">🥉</div>
-          <span class="tier-name">Bronze</span>
-        </div>
-        <div class="tier-info">
-          <h4>Bronze Sponsor</h4>
-          <p>Logo placement on website and materials · Quarterly newsletter · Certificate of recognition · Social media mention</p>
-        </div>
-        <div class="tier-amount">$10,000</div>
+    <div class="tiers-grid">
+      <div class="tier-card bronze">
+        <div class="tier-medal">🥉</div>
+        <span class="tier-label">Bronze</span>
+        <span class="tier-price">$10,000</span>
+        <ul class="tier-perks">
+          <li class="tier-perk">Logo on website &amp; materials</li>
+          <li class="tier-perk">Quarterly impact newsletter</li>
+          <li class="tier-perk">Certificate of recognition</li>
+          <li class="tier-perk">Social media feature</li>
+        </ul>
+        <a href="contact.html" class="btn-teal" style="width:100%; justify-content:center; font-size:13px; padding:11px;">Enquire</a>
       </div>
-      <div class="tier-row silver">
-        <div class="tier-badge">
-          <div class="tier-medal">🥈</div>
-          <span class="tier-name">Silver</span>
-        </div>
-        <div class="tier-info">
-          <h4>Silver Sponsor</h4>
-          <p>All Bronze benefits · Named cohort sponsorship · Featured social media campaign · Annual event invitation</p>
-        </div>
-        <div class="tier-amount">$25,000</div>
+      <div class="tier-card silver">
+        <div class="tier-medal">🥈</div>
+        <span class="tier-label">Silver</span>
+        <span class="tier-price">$25,000</span>
+        <ul class="tier-perks">
+          <li class="tier-perk">All Bronze benefits</li>
+          <li class="tier-perk">Named cohort sponsorship</li>
+          <li class="tier-perk">Featured social campaign</li>
+          <li class="tier-perk">Annual event invitation</li>
+        </ul>
+        <a href="contact.html" class="btn-teal" style="width:100%; justify-content:center; font-size:13px; padding:11px;">Enquire</a>
       </div>
-      <div class="tier-row gold-tier">
-        <div class="tier-badge">
-          <div class="tier-medal">🥇</div>
-          <span class="tier-name">Gold</span>
-        </div>
-        <div class="tier-info">
-          <h4>Gold Sponsor</h4>
-          <p>All Silver benefits · Co-branding on programs · Board meeting invitations · Talent pipeline access · Press release</p>
-        </div>
-        <div class="tier-amount">$50,000</div>
+      <div class="tier-card gold">
+        <div class="tier-medal">🥇</div>
+        <span class="tier-label">Gold</span>
+        <span class="tier-price">$50,000</span>
+        <ul class="tier-perks">
+          <li class="tier-perk">All Silver benefits</li>
+          <li class="tier-perk">Program co-branding</li>
+          <li class="tier-perk">Board meeting access</li>
+          <li class="tier-perk">Talent pipeline priority</li>
+        </ul>
+        <a href="contact.html" class="btn-teal" style="width:100%; justify-content:center; font-size:13px; padding:11px;">Enquire</a>
       </div>
-      <div class="tier-row platinum">
-        <div class="tier-badge">
-          <div class="tier-medal">💎</div>
-          <span class="tier-name">Platinum</span>
-        </div>
-        <div class="tier-info">
-          <h4>Platinum Sponsor</h4>
-          <p>All Gold benefits · Strategic partnership designation · Named hub or scholarship program · Full annual impact reporting</p>
-        </div>
-        <div class="tier-amount">$100,000</div>
+      <div class="tier-card platinum">
+        <div class="tier-medal">💎</div>
+        <span class="tier-label">Platinum</span>
+        <span class="tier-price">$100,000</span>
+        <ul class="tier-perks">
+          <li class="tier-perk">All Gold benefits</li>
+          <li class="tier-perk">Strategic partnership title</li>
+          <li class="tier-perk">Named hub or scholarship</li>
+          <li class="tier-perk">Full annual impact report</li>
+        </ul>
+        <a href="contact.html" class="btn-teal" style="width:100%; justify-content:center; font-size:13px; padding:11px;">Enquire</a>
       </div>
     </div>
-    <div class="sponsors-cta">
-      <a href="contact.html" class="btn-teal">Enquire About Corporate Sponsorship →</a>
+    <div class="tiers-cta">
+      <a href="contact.html" class="btn-teal">Discuss Corporate Partnership →</a>
     </div>
   </div>
 </section>
 
-<!-- HOW TO DONATE -->
+<!-- HOW IT WORKS -->
 <section class="how-section">
-  <div class="how-header">
-    <div class="section-tag">How to Give</div>
-    <h2 class="section-heading">Simple &amp; <em>Secure</em> Giving</h2>
-  </div>
-  <div class="how-grid">
-    <div class="how-card">
-      <div class="how-icon">🌍</div>
-      <h3>Flutterwave</h3>
-      <p>Our primary payment platform for Nigeria-based and international donations. Fast, secure, and accepts cards, bank transfers, and mobile money across Africa and beyond.</p>
-      <span class="method-tag primary">Primary · Recommended</span>
+  <div class="how-inner">
+    <div class="how-header">
+      <div class="section-tag">How It Works</div>
+      <h2 class="section-heading">Your Money <em>at Work</em></h2>
     </div>
-    <div class="how-card">
-      <div class="how-icon">💙</div>
-      <h3>PayPal</h3>
-      <p>For international donors who prefer PayPal. Accepted in 200+ countries and fully secure. Ideal for USD, GBP, or EUR donations from the diaspora.</p>
-      <span class="method-tag secondary">International Donors</span>
-    </div>
-    <div class="how-card">
-      <div class="how-icon">🏦</div>
-      <h3>Bank Transfer</h3>
-      <p>Direct bank transfers accepted for larger corporate and institutional donations. Contact us directly for our full banking details and wire transfer information.</p>
-      <span class="method-tag primary">Corporate &amp; Institutional</span>
-    </div>
-    <div class="how-card">
-      <div class="how-icon">✉️</div>
-      <h3>Custom Giving</h3>
-      <p>For grants, in-kind donations, equipment, or bespoke partnership arrangements — reach out to us directly to discuss your giving options and requirements.</p>
-      <span class="method-tag secondary">Grants &amp; In-Kind</span>
-    </div>
-  </div>
-</section>
-
-<!-- WHAT YOUR DONATION DOES -->
-<section class="impact-bd">
-  <div class="impact-bd-inner">
-    <div class="section-tag">Donation Impact</div>
-    <h2 class="section-heading">What Every Gift <em>Provides</em></h2>
-    <div class="impact-bd-grid">
-      <div class="ibd-card">
-        <span class="ibd-amount">$50</span>
-        <h4>One Month of Digital Access</h4>
-        <p>Provides a participant with internet access, devices, and materials for one full month of training.</p>
+    <div class="how-steps">
+      <div class="how-step">
+        <div class="step-num">1</div>
+        <h4>You Give</h4>
+        <p>Choose your amount and frequency — once or monthly. Any amount makes a difference.</p>
       </div>
-      <div class="ibd-card">
-        <span class="ibd-amount">$150</span>
-        <h4>Full Scholarship — One Student</h4>
-        <p>Covers the full cost of a STEM scholarship for one deserving young Nigerian, removing all financial barriers.</p>
+      <div class="how-step">
+        <div class="step-num">2</div>
+        <h4>We Deploy</h4>
+        <p>Funds go directly to training, equipment, scholarships, and community hub operations.</p>
       </div>
-      <div class="ibd-card">
-        <span class="ibd-amount">$500</span>
-        <h4>Equip a Learning Hub</h4>
-        <p>Provides computers, internet, and materials to set up a community learning hub reaching dozens of youth.</p>
+      <div class="how-step">
+        <div class="step-num">3</div>
+        <h4>Youth Trained</h4>
+        <p>Young Nigerians gain real digital skills — coding, software development, digital literacy.</p>
       </div>
-      <div class="ibd-card">
-        <span class="ibd-amount">$1,000</span>
-        <h4>Fund a Training Cohort</h4>
-        <p>Fully funds a complete training cohort — from recruitment and teaching to graduation and job placement support.</p>
-      </div>
-      <div class="ibd-card">
-        <span class="ibd-amount">$5,000</span>
-        <h4>Launch a State Program</h4>
-        <p>Funds the launch of BrightPath programs in a new Nigerian state — facilities, staff, materials, and outreach.</p>
-      </div>
-      <div class="ibd-card">
-        <span class="ibd-amount">$10K+</span>
-        <h4>Corporate Partnership</h4>
-        <p>Bronze corporate sponsorship — your brand directly empowering Nigeria's next generation of digital leaders.</p>
+      <div class="how-step">
+        <div class="step-num">4</div>
+        <h4>You See Impact</h4>
+        <p>Quarterly reports show exactly how your gift was used and the lives it changed.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- VOLUNTEER -->
-<section class="volunteer-section">
-  <div class="section-tag">Beyond Money</div>
-  <h2 class="section-heading">Share Your <em>Skills</em></h2>
-  <div class="volunteer-grid">
-    <div class="vol-content">
-      <p>BrightPath Foundation also welcomes skilled volunteers — particularly tech professionals, educators, and business leaders who can contribute time, mentorship, and expertise.</p>
-      <p>Whether you are a software developer who can teach for a weekend, an executive who can mentor a cohort of young entrepreneurs, or a marketer who can help us tell our story — there is a role for you.</p>
+<!-- PAYMENT METHODS -->
+<section class="pay-section">
+  <div class="pay-header">
+    <div class="section-tag">Payment Options</div>
+    <h2 class="section-heading">Give Your <em>Way</em></h2>
+  </div>
+  <div class="pay-grid">
+    <div class="pay-card">
+      <div class="pay-icon">🌍</div>
+      <div>
+        <h4>Flutterwave</h4>
+        <p>Cards, bank transfers, and mobile money — fast and secure across Africa and internationally.</p>
+        <span class="pay-badge primary">Primary · Recommended</span>
+      </div>
+    </div>
+    <div class="pay-card">
+      <div class="pay-icon">💙</div>
+      <div>
+        <h4>PayPal</h4>
+        <p>For diaspora and international donors. Accepts USD, GBP, EUR, and 100+ currencies.</p>
+        <span class="pay-badge secondary">International</span>
+      </div>
+    </div>
+    <div class="pay-card">
+      <div class="pay-icon">🏦</div>
+      <div>
+        <h4>Bank Transfer</h4>
+        <p>Direct transfers for corporate and institutional donors. Contact us for banking details.</p>
+        <span class="pay-badge primary">Corporate &amp; Institutional</span>
+      </div>
+    </div>
+    <div class="pay-card">
+      <div class="pay-icon">🤝</div>
+      <div>
+        <h4>In-Kind &amp; Grants</h4>
+        <p>Equipment, software, expertise, or grant funding. Reach out to explore custom arrangements.</p>
+        <span class="pay-badge secondary">Custom Arrangements</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VOLUNTEER / DIASPORA -->
+<section class="vol-section">
+  <div class="vol-inner">
+    <div class="vol-left">
+      <div class="section-tag">Beyond Money</div>
+      <h2 class="section-heading">Share Your <em>Skills</em></h2>
+      <p>BrightPath welcomes skilled volunteers — developers, educators, marketers, and business professionals who want to give their time and expertise to Nigeria's next generation.</p>
       <div class="vol-roles">
         <div class="vol-role"><span>💻</span> Tech Trainers</div>
         <div class="vol-role"><span>🤝</span> Mentors</div>
@@ -436,13 +708,13 @@
         <div class="vol-role"><span>📷</span> Photographers</div>
         <div class="vol-role"><span>✍️</span> Content Creators</div>
       </div>
-      <a href="contact.html" class="btn-teal" style="margin-top:32px;">Register as Volunteer →</a>
+      <a href="contact.html" class="btn-gold-solid">Register as Volunteer →</a>
     </div>
-    <div class="diaspora-box">
+    <div class="diaspora-card">
       <div class="d-icon">🌍</div>
       <h3>Nigerian Diaspora?</h3>
-      <p>BrightPath actively partners with Nigerians living abroad who want to invest in their home country's future — through mentorship, donations, or expertise sharing.</p>
-      <a href="contact.html" class="btn-teal">Connect With Us →</a>
+      <p>Living abroad and want to invest in Nigeria's future? BrightPath actively partners with diaspora professionals for mentorship, funding, and expertise sharing.</p>
+      <a href="contact.html" class="btn-gold-solid">Connect With Us →</a>
     </div>
   </div>
 </section>
@@ -502,9 +774,50 @@
 </footer>
 
 <script>
+  // Navbar
   const navbar = document.getElementById('navbar');
   window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 60));
   function toggleMenu() { document.getElementById('navLinks').classList.toggle('open'); }
+
+  // Frequency
+  let freq = 'once';
+  function setFreq(f) {
+    freq = f;
+    document.getElementById('pillOnce').classList.toggle('active', f === 'once');
+    document.getElementById('pillMonthly').classList.toggle('active', f === 'monthly');
+    document.getElementById('monthlyNote').classList.toggle('show', f === 'monthly');
+    refreshBtn();
+  }
+
+  // Amount
+  let amt = 50;
+  function pickAmt(el, val) {
+    document.querySelectorAll('.amt-btn').forEach(b => b.classList.remove('picked'));
+    el.classList.add('picked');
+    amt = val;
+    document.getElementById('customRow').style.display = (val === 0) ? 'block' : 'none';
+    if (val === 0) document.getElementById('customAmt').focus();
+    refreshBtn();
+  }
+
+  function refreshBtn() {
+    const custom = document.getElementById('customAmt').value;
+    const display = amt === 0 ? (custom || '?') : amt;
+    const suffix  = freq === 'monthly' ? '/month' : '';
+    const verb    = freq === 'monthly' ? 'Give' : 'Donate';
+    document.getElementById('giveBtnLabel').textContent = `${verb} $${display}${suffix} →`;
+  }
+
+  document.getElementById('customAmt').addEventListener('input', refreshBtn);
+
+  // Submit
+  function submitGift() {
+    const name  = document.getElementById('gFirst').value.trim();
+    const email = document.getElementById('gEmail').value.trim();
+    if (!name || !email) { alert('Please enter your name and email to continue.'); return; }
+    document.getElementById('donateForm').style.display = 'none';
+    document.getElementById('formSuccess').style.display = 'block';
+  }
 </script>
 </body>
 </html>
